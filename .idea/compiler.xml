@@ -10,4 +10,9 @@
       </profile>
     </annotationProcessing>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="sd2324-tp1-api" options="--add-modules java.base,java.logging" />
+    </option>
+  </component>
 </project>

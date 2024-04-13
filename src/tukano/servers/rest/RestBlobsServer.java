@@ -16,7 +16,7 @@ public class RestBlobsServer {
     }
 
     public static final int PORT = 8081;
-    public static final String SERVICE = "BlobsService";
+    public static final String SERVICE = "blobsservice";
     private static final String SERVER_URI_FMT = "http://%s:%s/rest";
 
     public static void main(String[] args) {
