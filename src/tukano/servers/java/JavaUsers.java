@@ -3,20 +3,20 @@ package tukano.servers.java;
 import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Users;
+import tukano.persistence.Hibernate;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 public class JavaUsers implements Users {
 
     private static Logger Log = Logger.getLogger(JavaUsers.class.getName());
 
-    Map<String, User> users;
+    Hibernate datastore;
 
     public JavaUsers() {
-        users = new HashMap<>();
+        datastore = Hibernate.getInstance();
     }
 
     @Override
@@ -28,12 +28,14 @@ public class JavaUsers implements Users {
             Log.info("User object invalid.");
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
-
+        List<User> result = datastore.sql("SELECT * FROM User u WHERE u.userId LIKE '" + user.userId() + "'",
+                User.class);
         // Insert user, checking if name already exists
-        if( users.putIfAbsent(user.userId(), user) != null ) {
+        if( !result.isEmpty() ) {
             Log.info("User already exists.");
             return Result.error( Result.ErrorCode.CONFLICT);
         }
+        datastore.persist(user);
         return Result.ok( user.userId() );
     }
 
@@ -47,13 +49,14 @@ public class JavaUsers implements Users {
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
 
-        User user = users.get(userId);
+        List<User> result = datastore.sql("SELECT * FROM User u WHERE u.userId LIKE '" + userId + "'",
+                User.class);
         // Check if user exists
-        if( user == null ) {
+        if(result.isEmpty()) {
             Log.info("User does not exist.");
             return Result.error( Result.ErrorCode.NOT_FOUND);
         }
-
+        User user = result.get(0);
         //Check if the password is correct
         if( !user.pwd().equals( pwd)) {
             Log.info("Password is incorrect.");
@@ -65,33 +68,50 @@ public class JavaUsers implements Users {
 
     @Override
     public Result<User> updateUser(String userId, String pwd, User user) {
+        Log.info("updateUser : user = " + userId + "; pwd = " + pwd + "\n" + "newUser = " + user);
+
+        if (user.userId() != null)
+            return Result.error(Result.ErrorCode.BAD_REQUEST);
+
         var result = getUser(userId, pwd);
         if (!result.isOK())
             return result;
-        return Result.ok(changeAttributes(result.value(), user));
+        User updatedUser = changeAttributes(result.value(), user);
+        return Result.ok(updatedUser);
     }
 
     private User changeAttributes(User oldUser, User updatedUser) {
-        if (updatedUser.getPwd() != null)
-            oldUser.setPwd(updatedUser.getPwd());
-        if (updatedUser.getEmail() != null)
-            oldUser.setPwd(updatedUser.getEmail());
-        if (updatedUser.getDisplayName() != null)
-            oldUser.setDisplayName(updatedUser.getDisplayName());
-        return users.get(oldUser.getUserId());
+        if (updatedUser.pwd() != null)
+            oldUser.setPwd(updatedUser.pwd());
+        if (updatedUser.email() != null)
+            oldUser.setPwd(updatedUser.email());
+        if (updatedUser.displayName() != null)
+            oldUser.setDisplayName(updatedUser.displayName());
+
+        datastore.update(oldUser);
+        return oldUser;
     }
 
     @Override
-    public Result<User> deleteUser(String userId, String pwd) { //TODO: mudar este codigo e meter bem
+    public Result<User> deleteUser(String userId, String pwd) {
+        Log.info("deleteUser : user = " + userId + "; pwd = " + pwd);
+
         var result = getUser(userId, pwd);
         if (!result.isOK())
             return result;
-        users.remove(userId);
-        return Result.ok(result.value());
+        User userToBeRemoved = result.value();
+        datastore.delete(userToBeRemoved);
+        return Result.ok(userToBeRemoved);
     }
 
     @Override
-    public Result<List<User>> searchUsers(String pattern) {
-        return null;
+    public Result<List<User>> searchUsers(String pattern) { //TODO: tratar de quando e badrequest
+        Log.info("searchUsers : pattern = " + pattern);
+        List<User> users = datastore.sql("SELECT * FROM User", User.class);
+
+        if (pattern != null) users.removeIf(user -> !user.userId().toLowerCase().contains(pattern.toLowerCase()));
+
+        users.forEach(user -> user.setPwd(""));
+        return Result.ok(users);
     }
 }
