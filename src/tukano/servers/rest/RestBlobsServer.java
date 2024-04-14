@@ -1,5 +1,6 @@
 package tukano.servers.rest;
 
+import Discovery.Discovery;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -16,7 +17,7 @@ public class RestBlobsServer {
     }
 
     public static final int PORT = 8081;
-    public static final String SERVICE = "blobsservice";
+    public static final String SERVICE = "blobs";
     private static final String SERVER_URI_FMT = "http://%s:%s/rest";
 
     public static void main(String[] args) {
@@ -28,6 +29,7 @@ public class RestBlobsServer {
             String ip = InetAddress.getLocalHost().getHostAddress();
             String serverURI = String.format(SERVER_URI_FMT, ip, PORT);
             JdkHttpServerFactory.createHttpServer(URI.create(serverURI), config);
+            Discovery.getInstance().announce(SERVICE, serverURI);
 
             Log.info(String.format("%s Server ready @ %s\n", SERVICE, serverURI));
 
