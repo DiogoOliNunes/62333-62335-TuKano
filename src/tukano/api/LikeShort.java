@@ -3,16 +3,16 @@ package tukano.api;
 import jakarta.persistence.*;
 
 @Entity
-public class Like {
+public class LikeShort {
 
     @Id
     private String likeId;
     private String shortLiked;
     private String user;
 
-    public Like() {}
+    public LikeShort() {}
 
-    public Like (String likeId, String shortLiked, String user) {
+    public LikeShort(String likeId, String shortLiked, String user) {
         this.likeId = likeId;
         this.shortLiked = shortLiked;
         this.user = user;

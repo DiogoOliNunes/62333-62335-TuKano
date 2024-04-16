@@ -3,7 +3,7 @@ package tukano.servers.java;
 import Discovery.Discovery;
 import tukano.api.Follow;
 import tukano.api.Short;
-import tukano.api.Like;
+import tukano.api.LikeShort;
 import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Shorts;
@@ -12,14 +12,13 @@ import tukano.clients.RestUsersClient;
 import tukano.persistence.Hibernate;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
 public class JavaShorts implements Shorts {
-    private static Logger Log = Logger.getLogger(JavaUsers.class.getName());
+    private static Logger Log = Logger.getLogger(JavaShorts.class.getName());
 
     Hibernate datastore;
     RestUsersClient client;
@@ -154,10 +153,41 @@ public class JavaShorts implements Shorts {
 
     private void changeLikesNr(Short userShort, boolean isLiked) {
         int shortLikes = userShort.getTotalLikes();
-        if (isLiked)
+        if (isLiked) {
+            Log.info("RECEBEU UM LIKE");
+            Log.info("RECEBEU UM LIKE");
+            Log.info("RECEBEU UM LIKE");
+            Log.info("RECEBEU UM LIKE");
+            Log.info("RECEBEU UM LIKE");
+            Log.info("RECEBEU UM LIKE");
+            Log.info("RECEBEU UM LIKE");
+            Log.info("RECEBEU UM LIKE");
+            Log.info("RECEBEU UM LIKE");
+
             userShort.setTotalLikes(shortLikes+1);
-        else
+        }
+        else {
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+            Log.info("PERDEU UM LIKE");
+
             userShort.setTotalLikes(shortLikes-1);
+        }
+        datastore.update(userShort);
     }
 
     @Override
@@ -172,117 +202,16 @@ public class JavaShorts implements Shorts {
 
         Short userShort = shortResult.value();
 
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("SHORT: " + userShort.toString());
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-        Log.info("");
-
         if (isLiked) {
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
-            Log.info("ENTREI PARA DAR LIKE");
+            LikeShort newLikeShort = new LikeShort(UUID.randomUUID().toString(), shortId, userId);
 
-            Like newLike = new Like(UUID.randomUUID().toString(), shortId, userId);
+            datastore.persist(newLikeShort);
+        }
+        else {
+            List<LikeShort> likeResult =
+                    datastore.sql("SELECT * FROM LikeShort l WHERE l.shortLiked = '" + shortId
+                            + "' AND l.user = '" + userId + "'", LikeShort.class);
 
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("NOVO LIKE: " + newLike.toString());
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-            Log.info("");
-
-            datastore.persist(newLike);
-        } else {
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-            Log.info("ENTREI PARA TIRAR O LIKE");
-
-            List<String> likeResult =
-                    datastore.sql("SELECT l.likeId FROM Like l WHERE l.shortLiked LIKE '" + shortId
-                            + "' AND l.user LIKE '" + userId + "'", String.class);
             if (likeResult.isEmpty()) {
                 Log.info("Like does not exist.");
                 return Result.error(Result.ErrorCode.NOT_FOUND);
@@ -308,7 +237,7 @@ public class JavaShorts implements Shorts {
             return Result.error( Result.ErrorCode.FORBIDDEN);
         }
 
-        List<String> likes = datastore.sql("SELECT l.likeId FROM Like l WHERE l.shortLiked LIKE '"
+        List<String> likes = datastore.sql("SELECT l.user FROM LikeShort l WHERE l.shortLiked LIKE '"
                 + shortId + "'", String.class);
 
         return Result.ok(likes);
