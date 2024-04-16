@@ -13,11 +13,34 @@ public class JavaBlobs implements Blobs {
 
     public JavaBlobs() { blobMap = new HashMap<>(); }
 
+    @Override
     public Result<Void> upload(String blobId, byte[] bytes) {
-        return null;
+        if (blobId == null || bytes == null) {
+            return Result.error(Result.ErrorCode.BAD_REQUEST);
+        }
+
+        if (blobMap.containsKey(blobId)) {
+            byte[] existingBytes = blobMap.get(blobId);
+            if (!java.util.Arrays.equals(existingBytes, bytes)) {
+                return Result.error(Result.ErrorCode.CONFLICT);
+            }
+        }
+
+        blobMap.put(blobId, bytes);
+        return Result.ok();
     }
 
+    @Override
     public Result<byte[]> download(String blobId) {
-        return null;
+        if (blobId == null) {
+            return Result.error(Result.ErrorCode.BAD_REQUEST);
+        }
+
+        if (!blobMap.containsKey(blobId)) {
+            return Result.error(Result.ErrorCode.NOT_FOUND);
+        }
+
+        byte[] bytes = blobMap.get(blobId);
+        return Result.ok(bytes);
     }
 }

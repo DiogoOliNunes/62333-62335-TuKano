@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class RestBlobsServer {
 
-    private static Logger Log = Logger.getLogger(RestUsersServer.class.getName());
+    private static Logger Log = Logger.getLogger(RestBlobsServer.class.getName());
 
     static {
         System.setProperty("java.net.preferIPv4Stack", "true");
@@ -24,7 +24,7 @@ public class RestBlobsServer {
         try {
 
             ResourceConfig config = new ResourceConfig();
-            config.register(  RestUsersResource.class );
+            config.register(  RestBlobsResource.class );
 
             String ip = InetAddress.getLocalHost().getHostAddress();
             String serverURI = String.format(SERVER_URI_FMT, ip, PORT);
