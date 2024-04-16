@@ -105,23 +105,23 @@ public class JavaShorts implements Shorts {
         }
         Result<User> result1 = client.getUser(userId1, password);
         Result<User> result2 = getUser(userId2);
-        if (!result1.isOK()) {
+        if (!result1.isOK())
             return Result.error(result1.error());
-        }
-        if (!result2.isOK()) {
+
+        if (!result2.isOK())
             return Result.error(result2.error());
-        }
 
-        if (isFollowing) {
+        List<Follow> follow = datastore.sql("SELECT * FROM Follow f WHERE f.followed = '"
+                + userId2 + "' AND f.follower = '" + userId1 + "'", Follow.class);
 
-            Log.info("ESTÁ A ENTRAR NESTE OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        if (isFollowing && follow.isEmpty()) {
             Follow newFollow = new Follow(UUID.randomUUID().toString(), userId1, userId2);
             datastore.persist(newFollow);
-        } else {
-            List<String> followId = datastore.sql("SELECT f.followId FROM Follow f WHERE f.followed LIKE '"
-                    + userId2 + "' AND f.follower LIKE '" + userId1 + "'", String.class);
-            datastore.delete(followId);
-        }
+        } else if (!isFollowing && !follow.isEmpty()) {
+            datastore.delete(follow);
+        } else
+            return Result.error(Result.ErrorCode.CONFLICT);
+
         return Result.ok();
     }
 
@@ -133,7 +133,7 @@ public class JavaShorts implements Shorts {
         if (!result.isOK())
             return Result.error(result.error());
 
-        List<String> followers = datastore.sql("SELECT f.follower FROM Follow f WHERE f.followed LIKE '"
+        List<String> followers = datastore.sql("SELECT f.follower FROM Follow f WHERE f.followed = '"
                 + userId + "'", String.class);
 
         return Result.ok(followers);
@@ -190,10 +190,79 @@ public class JavaShorts implements Shorts {
     public Result<List<String>> getFeed(String userId, String password) {
         Log.info("feed : user = " + userId);
 
-        List<String> feed = new ArrayList<>();
-        List<String> followers = followers(userId, password).value();
-        followers.forEach(follower -> {feed.addAll(getShorts(follower).value());});
-        //feed.sort(Comparator.comparing(Short::getTimestamp));
-        return null;
+        Result<List<String>> followersResult = followers(userId, password);
+        if (!followersResult.isOK()) {
+            return Result.error(followersResult.error());
+        }
+
+        List<String> feed = getShorts(userId).value();
+        List<String> followers = followersResult.value();
+
+        if (!followers.isEmpty()) {
+
+
+
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+            feed.addAll(datastore.sql("SELECT s.shortId FROM Short s JOIN Follow f " +
+                    "ON s.ownerId = f.followed WHERE f.follower = '" + userId + "'", String.class));
+
+            if (userId.equals("digna.hilll")){
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+            Log.info("FEED: "+ feed);
+        }}
+
+        feed.sort(Comparator.comparing(shortId -> getShort((String) shortId).value().getTimestamp()).reversed());
+
+        return Result.ok(feed);
     }
+
 }
