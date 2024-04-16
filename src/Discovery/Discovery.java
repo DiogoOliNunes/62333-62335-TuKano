@@ -107,7 +107,7 @@ class DiscoveryImpl implements Discovery {
             Set<URI> serviceUris = URIs.getOrDefault(serviceName, Collections.emptySet());
 
             if (serviceUris.size() >= minEntries) {
-                return serviceUris.toArray(new URI[0]);
+                return serviceUris.toArray(new URI[serviceUris.size()]);
             } else {
                 Sleep.ms(DISCOVERY_RETRY_TIMEOUT);
             }

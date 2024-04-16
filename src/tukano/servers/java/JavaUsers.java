@@ -6,7 +6,6 @@ import tukano.api.java.Users;
 import tukano.persistence.Hibernate;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.logging.Logger;
 
 public class JavaUsers implements Users {
