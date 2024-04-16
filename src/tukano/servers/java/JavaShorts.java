@@ -118,7 +118,7 @@ public class JavaShorts implements Shorts {
             Follow newFollow = new Follow(UUID.randomUUID().toString(), userId1, userId2);
             datastore.persist(newFollow);
         } else if (!isFollowing && !follow.isEmpty()) {
-            datastore.delete(follow);
+            datastore.delete(follow.get(0));
         } else
             return Result.error(Result.ErrorCode.CONFLICT);
 
@@ -152,6 +152,14 @@ public class JavaShorts implements Shorts {
         return Result.ok(following);
     }
 
+    private void changeLikesNr(Short userShort, boolean isLiked) {
+        int shortLikes = userShort.getTotalLikes();
+        if (isLiked)
+            userShort.setTotalLikes(shortLikes+1);
+        else
+            userShort.setTotalLikes(shortLikes-1);
+    }
+
     @Override
     public Result<Void> like(String shortId, String userId, boolean isLiked, String password) {
         Log.info("like : short = " + shortId + "; user = " + userId);
@@ -162,10 +170,116 @@ public class JavaShorts implements Shorts {
             return Result.error(Result.ErrorCode.NOT_FOUND);
         }
 
+        Short userShort = shortResult.value();
+
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("SHORT: " + userShort.toString());
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+        Log.info("");
+
         if (isLiked) {
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+            Log.info("ENTREI PARA DAR LIKE");
+
             Like newLike = new Like(UUID.randomUUID().toString(), shortId, userId);
+
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("NOVO LIKE: " + newLike.toString());
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+            Log.info("");
+
             datastore.persist(newLike);
         } else {
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+            Log.info("ENTREI PARA TIRAR O LIKE");
+
             List<String> likeResult =
                     datastore.sql("SELECT l.likeId FROM Like l WHERE l.shortLiked LIKE '" + shortId
                             + "' AND l.user LIKE '" + userId + "'", String.class);
@@ -173,8 +287,9 @@ public class JavaShorts implements Shorts {
                 Log.info("Like does not exist.");
                 return Result.error(Result.ErrorCode.NOT_FOUND);
             }
-            datastore.delete(likeResult);
+            datastore.delete(likeResult.get(0));
         }
+        changeLikesNr(userShort, isLiked);
         return Result.ok();
     }
 
