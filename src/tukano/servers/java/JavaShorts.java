@@ -139,6 +139,19 @@ public class JavaShorts implements Shorts {
         return Result.ok(followers);
     }
 
+    private Result<List<String>> following(String userId, String password) {
+        Log.info("following : user = " + userId);
+
+        Result<User> result = client.getUser(userId, password);
+        if (!result.isOK())
+            return Result.error(result.error());
+
+        List<String> following = datastore.sql("SELECT f.followed FROM Follow f WHERE f.follower = '"
+                + userId + "'", String.class);
+
+        return Result.ok(following);
+    }
+
     @Override
     public Result<Void> like(String shortId, String userId, boolean isLiked, String password) {
         Log.info("like : short = " + shortId + "; user = " + userId);
@@ -190,77 +203,20 @@ public class JavaShorts implements Shorts {
     public Result<List<String>> getFeed(String userId, String password) {
         Log.info("feed : user = " + userId);
 
-        Result<List<String>> followersResult = followers(userId, password);
-        if (!followersResult.isOK()) {
-            return Result.error(followersResult.error());
+        Result<List<String>> followingResult = following(userId, password);
+        if (!followingResult.isOK()) {
+            return Result.error(followingResult.error());
         }
 
         List<String> feed = getShorts(userId).value();
-        List<String> followers = followersResult.value();
+        List<String> following = followingResult.value();
 
-        if (!followers.isEmpty()) {
-
-
-
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
-            Log.info("OS FOLLOWERS NAO SAO EMPTYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+        if (!following.isEmpty()) {
             feed.addAll(datastore.sql("SELECT s.shortId FROM Short s JOIN Follow f " +
                     "ON s.ownerId = f.followed WHERE f.follower = '" + userId + "'", String.class));
+        }
 
-            if (userId.equals("digna.hilll")){
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-            Log.info("FEED: "+ feed);
-        }}
-
-        feed.sort(Comparator.comparing(shortId -> getShort((String) shortId).value().getTimestamp()).reversed());
+        feed.sort(Comparator.comparing(shortId -> getShort(shortId.toString()).value().getTimestamp()).reversed());
 
         return Result.ok(feed);
     }
