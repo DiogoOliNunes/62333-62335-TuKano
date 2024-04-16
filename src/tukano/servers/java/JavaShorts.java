@@ -7,6 +7,7 @@ import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Shorts;
 
+import tukano.clients.RestUsersClient;
 import tukano.persistence.Hibernate;
 
 import java.util.ArrayList;
@@ -19,9 +20,13 @@ public class JavaShorts implements Shorts {
     private static Logger Log = Logger.getLogger(JavaUsers.class.getName());
 
     Hibernate datastore;
+    RestUsersClient client;
+    URI[] uri;
 
     public JavaShorts () {
         datastore = Hibernate.getInstance();
+        uri = Discovery.getInstance().knownUrisOf("users",1);
+        client = new RestUsersClient(uri[0]);
     }
 
     private Result<User> getOwner(String userId) {
@@ -62,16 +67,10 @@ public class JavaShorts implements Shorts {
         Log.info("delete short: short = " + shortId + "; pwd = " + password);
 
         Short shortToBeDeleted = getShort(shortId).value();
-        Result<User> result = getOwner(shortToBeDeleted.getOwnerId());
+        Result<User> result = client.getUser(shortToBeDeleted.getOwnerId(), password);
+        if (!result.isOK())
+            return Result.error(result.error());
 
-        if (!result.isOK()) {
-            Log.info("User does not exist.");
-            return Result.error( Result.ErrorCode.NOT_FOUND);
-        }
-        if (!result.value().pwd().equals(password)) {
-            Log.info("Password is incorrect.");
-            return Result.error( Result.ErrorCode.FORBIDDEN);
-        }
         datastore.delete(shortToBeDeleted);
         return Result.ok();
     }
@@ -90,11 +89,10 @@ public class JavaShorts implements Shorts {
 
     @Override
     public Result<List<String>> getShorts(String userId) {
-        Result<User> result = getOwner(userId);
-        if (!result.isOK()) {
-            Log.info("User does not exist.");
-            return Result.error( Result.ErrorCode.NOT_FOUND);
-        }
+        Result<User> result = getUser(userId);
+        if (!result.isOK())
+            return Result.error(result.error());
+
         List<String> shorts =
                 datastore.sql("SELECT s.shortId FROM Short s WHERE s.ownerId LIKE '"
                         + userId + "'", String.class);
@@ -130,15 +128,11 @@ public class JavaShorts implements Shorts {
     @Override
     public Result<List<String>> followers(String userId, String password) {
         Log.info("followers : user = " + userId);
-        Result<User> result = getOwner(userId);
-        if (!result.isOK()) {
-            Log.info("User does not exist.");
-            return Result.error( Result.ErrorCode.NOT_FOUND);
-        }
-        if (!result.value().pwd().equals(password)) {
-            Log.info("Password is incorrect.");
-            return Result.error( Result.ErrorCode.FORBIDDEN);
-        }
+
+        Result<User> result = client.getUser(userId, password);
+        if (!result.isOK())
+            return Result.error(result.error());
+
         List<String> followers = datastore.sql("SELECT f.follower FROM Follow f WHERE f.followed LIKE '"
                 + userId + "'", String.class);
 
@@ -180,14 +174,8 @@ public class JavaShorts implements Shorts {
             Log.info("Short does not exist.");
             return Result.error(Result.ErrorCode.NOT_FOUND);
         }
-        Result<User> ownerResult = getOwner(shortResult.value().getOwnerId());
-        /*
+        Result<User> ownerResult = client.getUser(shortResult.value().getOwnerId(), password);
         if (!ownerResult.isOK()) {
-            Log.info("User does not exist.");
-            return Result.error( Result.ErrorCode.NOT_FOUND);
-        }
-        */
-        if (!ownerResult.value().pwd().equals(password)) {
             Log.info("Password is incorrect.");
             return Result.error( Result.ErrorCode.FORBIDDEN);
         }
