@@ -154,37 +154,9 @@ public class JavaShorts implements Shorts {
     private void changeLikesNr(Short userShort, boolean isLiked) {
         int shortLikes = userShort.getTotalLikes();
         if (isLiked) {
-            Log.info("RECEBEU UM LIKE");
-            Log.info("RECEBEU UM LIKE");
-            Log.info("RECEBEU UM LIKE");
-            Log.info("RECEBEU UM LIKE");
-            Log.info("RECEBEU UM LIKE");
-            Log.info("RECEBEU UM LIKE");
-            Log.info("RECEBEU UM LIKE");
-            Log.info("RECEBEU UM LIKE");
-            Log.info("RECEBEU UM LIKE");
-
             userShort.setTotalLikes(shortLikes+1);
         }
         else {
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-            Log.info("PERDEU UM LIKE");
-
             userShort.setTotalLikes(shortLikes-1);
         }
         datastore.update(userShort);

@@ -54,6 +54,7 @@ public class RestUsersClient extends RestClient implements Users {
         target = client.target( serverURI ).path( RestUsers.PATH );
     }
 
+    @Override
     public Result<String> createUser(User user) {
 
         for(int i = 0; i < MAX_RETRIES ; i++) {
@@ -71,7 +72,6 @@ public class RestUsersClient extends RestClient implements Users {
 
             } catch( ProcessingException x ) {
                 Log.info(x.getMessage());
-
                 utils.Sleep.ms( RETRY_SLEEP );
             }
             catch( Exception x ) {
