@@ -14,10 +14,7 @@ import tukano.persistence.Hibernate;
 
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class JavaShorts implements Shorts {
@@ -36,7 +33,6 @@ public class JavaShorts implements Shorts {
         userClient = new RestUsersClient(userURI[0]);
         blobClient = new RestBlobsClient(blobURI[0]);
     }
-    //TODO: buscar o server menos carregado de blobs
     private Result<User> getUser(String userId) {
         List<User> result = userClient.searchUsers(userId).value();
         if (result.isEmpty())
@@ -59,7 +55,7 @@ public class JavaShorts implements Shorts {
             return Result.error(result.error());
 
         String id = UUID.randomUUID().toString();
-        Short newShort = new Short(id, userId, blobURI[0].toURL() + "/" + id);
+        Short newShort = new Short(id, userId, getServer(blobURI) + "/" + id);
         datastore.persist(newShort);
         return Result.ok(newShort);
     }
@@ -78,6 +74,11 @@ public class JavaShorts implements Shorts {
         List<LikeShort> shortLikes = datastore.sql("SELECT * FROM LikeShort l WHERE l.shortLiked LIKE '"
                 + shortId + "'", LikeShort.class);
         shortLikes.forEach(like -> datastore.delete(like));
+
+        //blobClient = new RestBlobsClient(getRightServer(blobURI, shortId));
+        Log.info("QUAL É O BLOB CLIENT: " + blobClient.toString());
+
+
 
         Result<Void> resultBlob = blobClient.deleteBlob(shortId);
         if (!resultBlob.isOK()) return Result.error(resultBlob.error());
@@ -277,6 +278,32 @@ public class JavaShorts implements Shorts {
         feed.sort(Comparator.comparing(shortId -> getShort(shortId.toString()).value().getTimestamp()).reversed());
 
         return Result.ok(feed);
+    }
+
+    public URI getServer(URI[] URIs) {
+        Log.info("Getting the best server...");
+        return Arrays.stream(URIs).min(Comparator.comparing(this::getBlobSize)).orElse(null);
+    }
+
+    private int getBlobSize(URI uri) {
+        List<Short> blobShorts = datastore.sql("SELECT * FROM Short s WHERE s.blobUrl LIKE '"
+                + uri.toString() + "%'", Short.class);
+        return blobShorts.size();
+    }
+
+
+    private URI getRightServer(URI[] URIs, String shortId) {
+        Log.info("Getting the right server...");
+
+        List<Short> shortBlob = datastore.sql("SELECT * FROM Short s WHERE s.blobUrl LIKE '%" + shortId + "'", Short.class);
+
+        if (!shortBlob.isEmpty()) {
+            return Arrays.stream(URIs)
+                    .filter(uri -> uri.toString().contains(shortBlob.get(0).getBlobUrl()))
+                    .findFirst().orElse(null);
+        } else {
+            return null;
+        }
     }
 
 }

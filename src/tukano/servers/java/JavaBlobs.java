@@ -58,6 +58,7 @@ public class JavaBlobs implements Blobs {
                 Files.createDirectories(dir);
 
             Path blob = Path.of(BLOB_COLLECTION, blobId);
+            Log.info("Este é o path do upload: " + blob);
             if (!Files.exists(blob)) {
                 Files.write(blob, bytes);
                 return Result.ok();
@@ -95,11 +96,11 @@ public class JavaBlobs implements Blobs {
     @Override
     public Result<Void> deleteBlob(String blobId) {
         Log.info("Delete of blob: " + blobId);
+
         try {
             Path blobPath = Path.of(BLOB_COLLECTION, blobId);
-
-            if (!Files.exists(blobPath)) return Result.ok();
-
+            Log.info("ESTE É O PATH DO DELETE: " + blobPath);
+            if (!Files.exists(blobPath)) return Result.error(Result.ErrorCode.NOT_FOUND);
             Files.delete(blobPath);
             return Result.ok();
         } catch (IOException e) {
