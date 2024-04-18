@@ -12,6 +12,7 @@ import tukano.clients.RestBlobsClient;
 import tukano.clients.RestUsersClient;
 import tukano.persistence.Hibernate;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.Comparator;
 import java.util.List;
@@ -127,9 +128,12 @@ public class JavaShorts implements Shorts {
         if (isFollowing && follow.isEmpty()) {
             Follow newFollow = new Follow(UUID.randomUUID().toString(), userId1, userId2);
             datastore.persist(newFollow);
-        } else if (!isFollowing && !follow.isEmpty()) {
+        }
+        else if (!isFollowing && !follow.isEmpty())
             datastore.delete(follow.get(0));
-        } else
+        else if (!isFollowing)
+            return Result.ok();
+        else
             return Result.error(Result.ErrorCode.CONFLICT);
 
         return Result.ok();
@@ -147,6 +151,15 @@ public class JavaShorts implements Shorts {
                 + userId + "'", String.class);
 
         return Result.ok(followers);
+    }
+
+    @Override
+    public Result<Void> deleteFollowers(String userId) {
+        List<Follow> follows = datastore.sql("SELECT * FROM Follow f WHERE f.followed = '" + userId +
+                "' OR f.follower = '" + userId + "'", Follow.class);
+        follows.forEach(follow -> datastore.delete(follow));
+
+        return Result.ok();
     }
 
     //return all the users that are followed by the userId

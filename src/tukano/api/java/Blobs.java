@@ -51,4 +51,18 @@ public interface Blobs {
 		sink.accept(res.value());
 		return Result.ok();
 	}
+
+	/**
+	 * Deletes a short video blob resource identified by the provided blobId.
+	 *
+	 * @param blobId the identifier of the blob resource to be deleted
+	 * @return a Result indicating the outcome of the deletion operation:
+	 *         - OK if the blob resource was successfully deleted
+	 *         - an appropriate error code if deletion failed due to various reasons such as:
+	 *           - NOT_FOUND if no blob matches the provided blobId
+	 *           - INTERNAL_ERROR if an unexpected error occurred during deletion
+	 *           - and other error codes to indicate specific failure reasons
+	 */
+	Result<Void> deleteBlob(String blobId);
+
 }

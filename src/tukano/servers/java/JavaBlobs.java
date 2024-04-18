@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -19,13 +21,11 @@ import java.util.logging.Logger;
 public class JavaBlobs implements Blobs {
     private static Logger Log = Logger.getLogger(JavaBlobs.class.getName());
 
-    private Map<String, Path> blobFilePaths;
     private static final String BLOB_COLLECTION = "./blobs/";// blob collection, blob media center?
     Hibernate datastore;
     RestShortsClient client;
     URI[] uri;
     public JavaBlobs() {
-        blobFilePaths = new HashMap<>();
         createBlobsDirectory();
 
         datastore = Hibernate.getInstance();
@@ -43,31 +43,65 @@ public class JavaBlobs implements Blobs {
 
     @Override
     public Result<Void> upload(String blobId, byte[] bytes) {
-        //client.getShort(short.blobId??????????)
-        //o blob está inicializado a null la em cada short, é preciso mudar e aqui é preciso comparar para ter certeza da existencia
-        Path filePath = Path.of(BLOB_COLLECTION, blobId);
+        Log.info("Upload of blob: " + blobId);
+
+        if (!client.getShort(blobId).value().getShortId().equals(blobId)) {
+            Log.info("Blob ID invalid.");
+
+
+            return Result.error(Result.ErrorCode.FORBIDDEN);
+        }
+
         try {
-            Files.write(filePath, bytes);
-            blobFilePaths.put(blobId, filePath);
+            Path dir = Paths.get(BLOB_COLLECTION);
+            if (!Files.exists(dir))
+                Files.createDirectories(dir);
+
+            Path blob = Path.of(BLOB_COLLECTION, blobId);
+            if (!Files.exists(blob)) {
+                Files.write(blob, bytes);
+                return Result.ok();
+            }
+
+            byte[] blobContent = Files.readAllBytes(blob);
+            if (Arrays.equals(blobContent,bytes)) return Result.ok();
+
+            return Result.error(Result.ErrorCode.CONFLICT);
         } catch (IOException e) {
             e.printStackTrace();
             return Result.error(Result.ErrorCode.INTERNAL_ERROR);
         }
-        return Result.ok();
     }
-
 
     @Override
     public Result<byte[]> download(String blobId) {
-        Path filePath = blobFilePaths.get(blobId);
-
-        if (filePath == null || !Files.exists(filePath)) {
-            return Result.error(Result.ErrorCode.NOT_FOUND);
-        }
-
+        Log.info("Download of blob: " + blobId);
         try {
-            byte[] bytes = Files.readAllBytes(filePath);
-            return Result.ok(bytes);
+            Path blobPath = Path.of(BLOB_COLLECTION, blobId);
+
+            if (!Files.exists(blobPath)) {
+
+                return Result.error(Result.ErrorCode.NOT_FOUND);
+            }
+
+            byte[] blobContent = Files.readAllBytes(blobPath);
+            return Result.ok(blobContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Result.error(Result.ErrorCode.INTERNAL_ERROR);
+        }
+    }
+
+    @Override
+    public Result<Void> deleteBlob(String blobId) {
+        Log.info("Delete of blob: " + blobId);
+        try {
+            Path blobPath = Path.of(BLOB_COLLECTION, blobId);
+
+            if (!Files.exists(blobPath)) return Result.ok();
+
+            Files.delete(blobPath);
+            return Result.ok();
         } catch (IOException e) {
             e.printStackTrace();
             return Result.error(Result.ErrorCode.INTERNAL_ERROR);
