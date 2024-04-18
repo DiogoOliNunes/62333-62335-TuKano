@@ -107,13 +107,14 @@ public class JavaUsers implements Users {
             return result;
 
         List<String> userShorts = shortsClient.getShorts(userId).value();
-        userShorts.forEach(userShort -> shortsClient.deleteShort(userShort, pwd));
+        userShorts.forEach(userShort -> shortsClient.deleteShort(userShort, pwd)); // da erro
 
         shortsClient.deleteFollowers(userId);
         shortsClient.deleteLikes(userId);
 
         User userToBeRemoved = result.value();
         datastore.delete(userToBeRemoved);
+
         return Result.ok(userToBeRemoved);
     }
 

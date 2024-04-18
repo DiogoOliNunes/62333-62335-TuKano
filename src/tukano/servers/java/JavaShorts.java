@@ -14,6 +14,7 @@ import tukano.persistence.Hibernate;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
@@ -74,7 +75,8 @@ public class JavaShorts implements Shorts {
 
         datastore.delete(shortToBeDeleted);
 
-        List<String> shortLikes = likes(shortId, password).value();
+        List<LikeShort> shortLikes = datastore.sql("SELECT * FROM LikeShort l WHERE l.shortLiked LIKE '"
+                + shortId + "'", LikeShort.class);
         shortLikes.forEach(like -> datastore.delete(like));
 
         Result<Void> resultBlob = blobClient.deleteBlob(shortId);
@@ -155,10 +157,10 @@ public class JavaShorts implements Shorts {
 
     @Override
     public Result<Void> deleteFollowers(String userId) {
+        Log.info("delete followers : user = " + userId);
         List<Follow> follows = datastore.sql("SELECT * FROM Follow f WHERE f.followed = '" + userId +
                 "' OR f.follower = '" + userId + "'", Follow.class);
         follows.forEach(follow -> datastore.delete(follow));
-
         return Result.ok();
     }
 
@@ -242,10 +244,16 @@ public class JavaShorts implements Shorts {
     }
 
     public Result<Void> deleteLikes(String userId) {
+        Log.info("delete likes : user = " + userId);
+
         List<LikeShort> likes = datastore.sql("SELECT * FROM LikeShort l WHERE l.user = '"
                 + userId + "'", LikeShort.class);
+        likes.forEach(userLike -> {
+            datastore.delete(userLike);
+            Short shortLiked = getShort(userLike.getShortLiked()).value();
+            changeLikesNr(shortLiked, false);
+        });
 
-        likes.forEach(userLike -> datastore.delete(userLike));
         return Result.ok();
     }
 
