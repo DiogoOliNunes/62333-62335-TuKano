@@ -1,0 +1,9 @@
+
+p
+java:S3008"NRename this field "Log" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒÙè‡ÿÿÿÿÿ8ô›ÜËî1
+I
+java:S1128",Remove this unused import 'tukano.api.User'.(¨„İÕ8„œÜËî1
+]
+java:S1128";Remove this unused import 'tukano.clients.RestUsersClient'.( çıâşÿÿÿÿ8…œÜËî1
+I
+java:S1068"'Remove this unused "Log" private field.(ƒÙè‡ÿÿÿÿÿ8†œÜËî1
