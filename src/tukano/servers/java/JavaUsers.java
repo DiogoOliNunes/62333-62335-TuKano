@@ -1,10 +1,13 @@
 package tukano.servers.java;
 
+import Discovery.Discovery;
 import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Users;
+import tukano.clients.RestShortsClient;
 import tukano.persistence.Hibernate;
 
+import java.net.URI;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -13,9 +16,13 @@ public class JavaUsers implements Users {
     private static Logger Log = Logger.getLogger(JavaUsers.class.getName());
 
     Hibernate datastore;
+    RestShortsClient shortsClient;
+    URI[] shortURI;
 
     public JavaUsers() {
         datastore = Hibernate.getInstance();
+        shortURI = Discovery.getInstance().knownUrisOf("shorts",1);
+        shortsClient = new RestShortsClient(shortURI[0]);
     }
 
     @Override
@@ -98,6 +105,13 @@ public class JavaUsers implements Users {
         var result = getUser(userId, pwd);
         if (!result.isOK())
             return result;
+
+        List<String> userShorts = shortsClient.getShorts(userId).value();
+        userShorts.forEach(userShort -> shortsClient.deleteShort(userShort, pwd));
+
+        shortsClient.deleteFollowers(userId);
+        shortsClient.deleteLikes(userId);
+
         User userToBeRemoved = result.value();
         datastore.delete(userToBeRemoved);
         return Result.ok(userToBeRemoved);

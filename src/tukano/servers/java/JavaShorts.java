@@ -8,6 +8,7 @@ import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Shorts;
 
+import tukano.clients.RestBlobsClient;
 import tukano.clients.RestUsersClient;
 import tukano.persistence.Hibernate;
 
@@ -21,17 +22,21 @@ public class JavaShorts implements Shorts {
     private static Logger Log = Logger.getLogger(JavaShorts.class.getName());
 
     Hibernate datastore;
-    RestUsersClient client;
-    URI[] uri;
+    RestUsersClient userClient;
+    RestBlobsClient blobClient;
+    URI[] userURI;
+    URI[] blobURI;
 
     public JavaShorts () {
         datastore = Hibernate.getInstance();
-        uri = Discovery.getInstance().knownUrisOf("users",1);
-        client = new RestUsersClient(uri[0]);
+        userURI = Discovery.getInstance().knownUrisOf("users",1);
+        blobURI = Discovery.getInstance().knownUrisOf("blobs",1);
+        userClient = new RestUsersClient(userURI[0]);
+        blobClient = new RestBlobsClient(blobURI[0]);
     }
-
+    //TODO: buscar o server menos carregado de blobs
     private Result<User> getUser(String userId) {
-        List<User> result = client.searchUsers(userId).value();
+        List<User> result = userClient.searchUsers(userId).value();
         if (result.isEmpty())
             return Result.error(Result.ErrorCode.NOT_FOUND);
 
@@ -39,7 +44,7 @@ public class JavaShorts implements Shorts {
     }
 
     @Override
-    public Result<Short> createShort(String userId, String password) {
+    public Result<Short> createShort(String userId, String password) throws MalformedURLException {
         Log.info("create short: user = " + userId);
 
         if(userId == null || password == null) {
@@ -47,13 +52,12 @@ public class JavaShorts implements Shorts {
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
 
-        Result<User> result = client.getUser(userId, password);
+        Result<User> result = userClient.getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
 
-
-        //TODO: meter o blobURL, para ja vou meter a null
-        Short newShort = new Short(UUID.randomUUID().toString(), userId, null);
+        String id = UUID.randomUUID().toString();
+        Short newShort = new Short(id, userId, blobURI[0].toURL() + "/" + id);
         datastore.persist(newShort);
         return Result.ok(newShort);
     }
@@ -63,11 +67,18 @@ public class JavaShorts implements Shorts {
         Log.info("delete short: short = " + shortId + "; pwd = " + password);
 
         Short shortToBeDeleted = getShort(shortId).value();
-        Result<User> result = client.getUser(shortToBeDeleted.getOwnerId(), password);
+        Result<User> result = userClient.getUser(shortToBeDeleted.getOwnerId(), password);
         if (!result.isOK())
             return Result.error(result.error());
 
         datastore.delete(shortToBeDeleted);
+
+        List<String> shortLikes = likes(shortId, password).value();
+        shortLikes.forEach(like -> datastore.delete(like));
+
+        Result<Void> resultBlob = blobClient.deleteBlob(shortId);
+        if (!resultBlob.isOK()) return Result.error(resultBlob.error());
+
         return Result.ok();
     }
 
@@ -102,7 +113,7 @@ public class JavaShorts implements Shorts {
             Log.info("Arguments invalid.");
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
-        Result<User> result1 = client.getUser(userId1, password);
+        Result<User> result1 = userClient.getUser(userId1, password);
         Result<User> result2 = getUser(userId2);
         if (!result1.isOK())
             return Result.error(result1.error());
@@ -128,7 +139,7 @@ public class JavaShorts implements Shorts {
     public Result<List<String>> followers(String userId, String password) {
         Log.info("followers : user = " + userId);
 
-        Result<User> result = client.getUser(userId, password);
+        Result<User> result = userClient.getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
 
@@ -138,10 +149,11 @@ public class JavaShorts implements Shorts {
         return Result.ok(followers);
     }
 
+    //return all the users that are followed by the userId
     private Result<List<String>> following(String userId, String password) {
         Log.info("following : user = " + userId);
 
-        Result<User> result = client.getUser(userId, password);
+        Result<User> result = userClient.getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
 
@@ -150,6 +162,7 @@ public class JavaShorts implements Shorts {
 
         return Result.ok(following);
     }
+
 
     private void changeLikesNr(Short userShort, boolean isLiked) {
         int shortLikes = userShort.getTotalLikes();
@@ -203,7 +216,7 @@ public class JavaShorts implements Shorts {
             Log.info("Short does not exist.");
             return Result.error(Result.ErrorCode.NOT_FOUND);
         }
-        Result<User> ownerResult = client.getUser(shortResult.value().getOwnerId(), password);
+        Result<User> ownerResult = userClient.getUser(shortResult.value().getOwnerId(), password);
         if (!ownerResult.isOK()) {
             Log.info("Password is incorrect.");
             return Result.error( Result.ErrorCode.FORBIDDEN);
@@ -213,6 +226,14 @@ public class JavaShorts implements Shorts {
                 + shortId + "'", String.class);
 
         return Result.ok(likes);
+    }
+
+    public Result<Void> deleteLikes(String userId) {
+        List<LikeShort> likes = datastore.sql("SELECT * FROM LikeShort l WHERE l.user = '"
+                + userId + "'", LikeShort.class);
+
+        likes.forEach(userLike -> datastore.delete(userLike));
+        return Result.ok();
     }
 
     @Override

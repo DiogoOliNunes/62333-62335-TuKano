@@ -1,5 +1,7 @@
 package tukano.api.rest;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import jakarta.ws.rs.Consumes;
@@ -28,15 +30,17 @@ public interface RestShorts {
 	String LIKES = "/likes";
 	String SHORTS = "/shorts";
 	String FOLLOWERS = "/followers";
-	
+	String DELETE_FOLLOWERS = "/delefollow";
+	String DELETING = "deleting";
+
 	@POST
 	@Path("/{" + USER_ID + "}")
 	@Produces(MediaType.APPLICATION_JSON)
-	Short createShort(@PathParam(USER_ID) String userId, @QueryParam(PWD) String password);
+	Short createShort(@PathParam(USER_ID) String userId, @QueryParam(PWD) String password) throws MalformedURLException;
 
 	@DELETE
 	@Path("/{" + SHORT_ID + "}")
-	void deleteShort(@PathParam(SHORT_ID) String shortId, @QueryParam(PWD) String password);
+	void deleteShort(@PathParam(SHORT_ID) String shortId, @QueryParam(PWD) String password) throws IOException;
 
 	@GET
 	@Path("/{" + SHORT_ID + "}" )
@@ -72,4 +76,14 @@ public interface RestShorts {
 	@Path("/{" + USER_ID + "}" + FEED )
 	@Produces(MediaType.APPLICATION_JSON)
 	List<String> getFeed( @PathParam(USER_ID) String userId, @QueryParam(PWD) String password);
+
+
+	@DELETE
+	@Path("/{" + USER_ID + "}" + DELETING)
+	void deleteLikes(@PathParam(USER_ID) String userId);
+
+
+	@DELETE
+	@Path("/{" + USER_ID + "}" + DELETE_FOLLOWERS)
+	void deleteFollowers(@PathParam(USER_ID) String userId);
 }

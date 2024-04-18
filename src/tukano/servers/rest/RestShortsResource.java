@@ -7,6 +7,8 @@ import tukano.api.java.Shorts;
 import tukano.api.rest.RestShorts;
 import tukano.servers.java.JavaShorts;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import jakarta.inject.Singleton;
@@ -21,12 +23,12 @@ public class RestShortsResource implements RestShorts {
     }
 
     @Override
-    public Short createShort(String userId, String password) {
+    public Short createShort(String userId, String password) throws MalformedURLException {
         return resultOrThrow( impl.createShort(userId, password));
     }
 
     @Override
-    public void deleteShort(String shortId, String password) {
+    public void deleteShort(String shortId, String password) throws IOException {
         resultOrThrow( impl.deleteShort(shortId, password));
     }
 
@@ -65,6 +67,15 @@ public class RestShortsResource implements RestShorts {
         return resultOrThrow( impl.getFeed(userId, password));
     }
 
+    @Override
+    public void deleteLikes(String userId) {
+        resultOrThrow( impl.deleteLikes(userId));
+    }
+
+    @Override
+    public void deleteFollowers(String userId) {
+        resultOrThrow( impl.deleteLikes(userId));
+    }
 
     /**
      * Given a Result<T>, either returns the value, or throws the JAX-WS Exception

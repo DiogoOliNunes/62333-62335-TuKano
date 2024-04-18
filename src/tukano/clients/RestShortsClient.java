@@ -10,6 +10,7 @@ import tukano.api.java.Shorts;
 import tukano.api.rest.RestShorts;
 import tukano.api.rest.RestUsers;
 
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,7 +25,6 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 
-
 public class RestShortsClient extends RestClient implements Shorts {
 
     private static Logger Log = Logger.getLogger(RestShortsClient.class.getName());
@@ -35,29 +35,22 @@ public class RestShortsClient extends RestClient implements Shorts {
     protected static final int MAX_RETRIES = 10;
     protected static final int RETRY_SLEEP = 5000;
 
-
     final URI serverURI;
     final Client client;
     final ClientConfig config;
-
     final WebTarget target;
-
 
     public RestShortsClient(URI serverURI) {
         this.serverURI = serverURI;
-
         this.config = new ClientConfig();
-
         config.property(ClientProperties.READ_TIMEOUT, READ_TIMEOUT);
         config.property(ClientProperties.CONNECT_TIMEOUT, CONNECT_TIMEOUT);
-
         this.client = ClientBuilder.newClient(config);
-
         target = client.target(serverURI).path(RestShorts.PATH);
     }
 
     @Override
-    public Result<Short> createShort(String userId, String password) {
+    public Result<Short> createShort(String userId, String password) throws MalformedURLException {
         for (int i = 0; i < MAX_RETRIES; i++) {
             try {
                 Response r = target.request()
@@ -65,10 +58,10 @@ public class RestShortsClient extends RestClient implements Shorts {
                         .post(Entity.entity(null, MediaType.APPLICATION_JSON));
 
                 var status = r.getStatus();
-                if( status != Status.OK.getStatusCode() )
-                    return Result.error( getErrorCodeFrom(status));
+                if (status != Status.OK.getStatusCode())
+                    return Result.error(getErrorCodeFrom(status));
                 else
-                    return Result.ok( r.readEntity( Short.class ));
+                    return Result.ok(r.readEntity(Short.class));
             } catch (ProcessingException x) {
                 Log.info(x.getMessage());
                 utils.Sleep.ms(RETRY_SLEEP);
@@ -87,12 +80,11 @@ public class RestShortsClient extends RestClient implements Shorts {
                 .get();
 
         var status = r.getStatus();
-        if( status != Status.OK.getStatusCode() )
-            return Result.error( getErrorCodeFrom(status));
+        if (status != Status.OK.getStatusCode())
+            return Result.error(getErrorCodeFrom(status));
         else
-            return Result.ok( r.readEntity( Short.class ));
+            return Result.ok(r.readEntity(Short.class));
     }
-
 
     @Override
     public Result<Void> deleteShort(String shortId, String password) {
@@ -102,24 +94,32 @@ public class RestShortsClient extends RestClient implements Shorts {
                 .delete();
 
         var status = r.getStatus();
-        if( status != Status.OK.getStatusCode() )
-            return Result.error( getErrorCodeFrom(status));
+        if (status != Status.OK.getStatusCode())
+            return Result.error(getErrorCodeFrom(status));
         else
             return Result.ok();
     }
 
     @Override
     public Result<List<String>> getShorts(String userId) {
-        Response response = target
-                .queryParam("userId", userId)
-                .request(MediaType.APPLICATION_JSON)
-                .get();
+        try {
+            Response response = target
+                    .path(userId)
+                    .path("shorts")
+                    .request()
+                    .accept(MediaType.APPLICATION_JSON)
+                    .get();
 
-        int status = response.getStatus();
-        if (status == Status.OK.getStatusCode()) {
-            return Result.ok(response.readEntity(new GenericType<List<String>>() {}));
-        } else {
-            return Result.error(getErrorCodeFrom(status));
+            int status = response.getStatus();
+            if (status == Status.OK.getStatusCode()) {
+                List<String> shorts = response.readEntity(new GenericType<List<String>>() {});
+                return Result.ok(shorts);
+            } else {
+                return Result.error(getErrorCodeFrom(status));
+            }
+        } catch (ProcessingException e) {
+            Log.info(e.getMessage());
+            return Result.error(Result.ErrorCode.INTERNAL_ERROR);
         }
     }
 
@@ -159,6 +159,7 @@ public class RestShortsClient extends RestClient implements Shorts {
         }
     }
 
+
     @Override
     public Result<Void> like(String shortId, String userId, boolean isLiked, String password) {
         Response response = target
@@ -195,6 +196,36 @@ public class RestShortsClient extends RestClient implements Shorts {
     }
 
     @Override
+    public Result<Void> deleteLikes(String userId) {
+        Response r = target.path(userId)
+                .path(RestShorts.DELETING)
+                .request()
+                .delete();
+
+        int status = r.getStatus();
+        if (status == Status.OK.getStatusCode()) {
+            return Result.ok();
+        } else {
+            return Result.error(getErrorCodeFrom(status));
+        }
+    }
+
+    @Override
+    public Result<Void> deleteFollowers(String userId) {
+        Response r = target.path(userId)
+                .path(RestShorts.DELETE_FOLLOWERS)
+                .request()
+                .delete();
+
+        int status = r.getStatus();
+        if (status == Status.OK.getStatusCode()) {
+            return Result.ok();
+        } else {
+            return Result.error(getErrorCodeFrom(status));
+        }
+    }
+
+    @Override
     public Result<List<String>> getFeed(String userId, String password) {
         Response response = target
                 .path("feed")
@@ -212,7 +243,6 @@ public class RestShortsClient extends RestClient implements Shorts {
         }
     }
 
-
     public static Result.ErrorCode getErrorCodeFrom(int status) {
         return switch (status) {
             case 200, 209 -> Result.ErrorCode.OK;
@@ -225,5 +255,4 @@ public class RestShortsClient extends RestClient implements Shorts {
             default -> Result.ErrorCode.INTERNAL_ERROR;
         };
     }
-
 }
