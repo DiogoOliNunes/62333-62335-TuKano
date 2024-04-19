@@ -113,6 +113,13 @@ message LikesResult {
 	repeated string userId = 1;
 }
 
+message DeleteLikesArgs {
+	string userId = 1;
+}
+
+message DeleteLikesResult {
+}
+
 message GetFeedArgs {
 	string userId = 1;
 	string password = 2;
