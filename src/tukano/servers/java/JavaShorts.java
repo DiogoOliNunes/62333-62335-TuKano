@@ -8,8 +8,8 @@ import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Shorts;
 
-import tukano.clients.RestBlobsClient;
-import tukano.clients.RestUsersClient;
+import tukano.clients.rest.RestBlobsClient;
+import tukano.clients.rest.RestUsersClient;
 import tukano.persistence.Hibernate;
 
 import java.net.MalformedURLException;
@@ -77,8 +77,6 @@ public class JavaShorts implements Shorts {
 
         //blobClient = new RestBlobsClient(getRightServer(blobURI, shortId));
         Log.info("QUAL É O BLOB CLIENT: " + blobClient.toString());
-
-
 
         Result<Void> resultBlob = blobClient.deleteBlob(shortId);
         if (!resultBlob.isOK()) return Result.error(resultBlob.error());

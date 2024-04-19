@@ -1,4 +1,4 @@
-package tukano.clients;
+package tukano.clients.rest;
 import jakarta.ws.rs.ProcessingException;
 import jakarta.ws.rs.core.Response;
 import tukano.api.java.Result;

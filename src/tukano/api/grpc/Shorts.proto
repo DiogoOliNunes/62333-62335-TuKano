@@ -18,6 +18,8 @@ service Shorts {
 
 	rpc followers( FollowersArgs ) returns (FollowersResult);
 
+	rpc deleteFollowers( DeleteFollowersArgs ) returns (DeleteFollowersResult);
+
 	rpc like( LikeArgs) returns (LikeResult);
 
 	rpc likes( LikesArgs ) returns (LikesResult);
@@ -83,6 +85,13 @@ message FollowersArgs {
 
 message FollowersResult {
 	repeated string userId = 1;
+}
+
+message DeleteFollowersArgs {
+	string userId = 1;
+}
+
+message DeleteFollowersResult {
 }
 
 message LikeArgs {

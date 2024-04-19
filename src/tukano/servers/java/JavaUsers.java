@@ -4,7 +4,7 @@ import Discovery.Discovery;
 import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Users;
-import tukano.clients.RestShortsClient;
+import tukano.clients.rest.RestShortsClient;
 import tukano.persistence.Hibernate;
 
 import java.net.URI;

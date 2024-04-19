@@ -1,11 +1,9 @@
 package tukano.servers.java;
 
 import Discovery.Discovery;
-import tukano.api.User;
 import tukano.api.java.Blobs;
 import tukano.api.java.Result;
-import tukano.clients.RestShortsClient;
-import tukano.clients.RestUsersClient;
+import tukano.clients.rest.RestShortsClient;
 import tukano.persistence.Hibernate;
 
 import java.io.IOException;
@@ -14,8 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 public class JavaBlobs implements Blobs {

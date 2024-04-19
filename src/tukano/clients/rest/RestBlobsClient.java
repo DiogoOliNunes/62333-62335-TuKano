@@ -1,17 +1,15 @@
-package tukano.clients;
+package tukano.clients.rest;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
-import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import tukano.api.java.Blobs;
 import tukano.api.java.Result;
 
 import java.net.URI;
-import java.util.List;
 import java.util.logging.Logger;
 
 import org.glassfish.jersey.client.ClientConfig;
@@ -20,7 +18,6 @@ import org.glassfish.jersey.client.ClientProperties;
 import jakarta.ws.rs.ProcessingException;
 import jakarta.ws.rs.core.Response.Status;
 import tukano.api.rest.RestBlobs;
-import tukano.api.rest.RestUsers;
 
 
 public class RestBlobsClient  extends RestClient implements Blobs {

@@ -1,5 +1,8 @@
 package tukano.impl.grpc.generated_java;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
@@ -345,14 +348,14 @@ public final class ShortsGrpc {
     /**
      */
     default void createShort(tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortArgs request,
-        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortResult> responseObserver) {
+        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortResult> responseObserver) throws MalformedURLException {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateShortMethod(), responseObserver);
     }
 
     /**
      */
     default void deleteShort(tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortArgs request,
-        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortResult> responseObserver) {
+        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortResult> responseObserver) throws IOException {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteShortMethod(), responseObserver);
     }
 
@@ -703,12 +706,20 @@ public final class ShortsGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_CREATE_SHORT:
-          serviceImpl.createShort((tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortArgs) request,
-              (io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortResult>) responseObserver);
+          try {
+            serviceImpl.createShort((ShortsProtoBuf.CreateShortArgs) request,
+                (io.grpc.stub.StreamObserver<ShortsProtoBuf.CreateShortResult>) responseObserver);
+          } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+          }
           break;
         case METHODID_DELETE_SHORT:
-          serviceImpl.deleteShort((tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortArgs) request,
-              (io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortResult>) responseObserver);
+          try {
+            serviceImpl.deleteShort((ShortsProtoBuf.DeleteShortArgs) request,
+                (io.grpc.stub.StreamObserver<ShortsProtoBuf.DeleteShortResult>) responseObserver);
+          } catch (IOException e) {
+            throw new RuntimeException(e);
+          }
           break;
         case METHODID_GET_SHORT:
           serviceImpl.getShort((tukano.impl.grpc.generated_java.ShortsProtoBuf.GetShortArgs) request,

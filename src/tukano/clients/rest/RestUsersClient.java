@@ -1,4 +1,4 @@
-package tukano.clients;
+package tukano.clients.rest;
 
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.GenericType;
