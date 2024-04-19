@@ -95,11 +95,14 @@ public class JavaBlobs implements Blobs {
 
         try {
             Path blobPath = Path.of(BLOB_COLLECTION, blobId);
-            Log.info("ESTE É O PATH DO DELETE: " + blobPath);
-            if (!Files.exists(blobPath)) return Result.error(Result.ErrorCode.NOT_FOUND);
+            if (!Files.exists(blobPath))
+                return Result.error(Result.ErrorCode.NOT_FOUND);
+            Log.info("O ficheiro existe antes do delete? -> " + Files.exists(blobPath));
             Files.delete(blobPath);
+            Log.info("O ficheiro existe depois do delete? -> " + Files.exists(blobPath));
             return Result.ok();
         } catch (IOException e) {
+            Log.info("Está a entrar aqui");
             e.printStackTrace();
             return Result.error(Result.ErrorCode.INTERNAL_ERROR);
         }

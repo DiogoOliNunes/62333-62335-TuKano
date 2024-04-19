@@ -75,11 +75,11 @@ public class JavaShorts implements Shorts {
                 + shortId + "'", LikeShort.class);
         shortLikes.forEach(like -> datastore.delete(like));
 
-        //blobClient = new RestBlobsClient(getRightServer(blobURI, shortId));
-        Log.info("QUAL É O BLOB CLIENT: " + blobClient.toString());
-
+        blobClient = new RestBlobsClient(getRightServer(blobURI, shortToBeDeleted));
         Result<Void> resultBlob = blobClient.deleteBlob(shortId);
-        if (!resultBlob.isOK()) return Result.error(resultBlob.error());
+
+        if (!resultBlob.isOK())
+            return Result.error(resultBlob.error());
 
         return Result.ok();
     }
@@ -290,16 +290,20 @@ public class JavaShorts implements Shorts {
     }
 
 
-    private URI getRightServer(URI[] URIs, String shortId) {
-        Log.info("Getting the right server...");
+    private URI getRightServer(URI[] URIs, Short shortEliminated) {
+        Log.info("Getting the right server of short " + shortEliminated.getShortId());
 
-        List<Short> shortBlob = datastore.sql("SELECT * FROM Short s WHERE s.blobUrl LIKE '%" + shortId + "'", Short.class);
+        URI rightURI = null;
 
-        if (!shortBlob.isEmpty()) {
-            return Arrays.stream(URIs)
-                    .filter(uri -> uri.toString().contains(shortBlob.get(0).getBlobUrl()))
-                    .findFirst().orElse(null);
+        if (shortEliminated != null) {
+            for (int i = 0; i < URIs.length; i++) {
+                if (shortEliminated.getBlobUrl().contains(URIs[i].toString())) {
+                    rightURI = URIs[i];
+                }
+            }
+            return rightURI;
         } else {
+            Log.info("Short not found.");
             return null;
         }
     }

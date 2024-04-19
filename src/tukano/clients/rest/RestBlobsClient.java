@@ -6,6 +6,7 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import tukano.api.Short;
 import tukano.api.java.Blobs;
 import tukano.api.java.Result;
 
@@ -93,7 +94,7 @@ public class RestBlobsClient  extends RestClient implements Blobs {
         if (status != Status.OK.getStatusCode())
             return Result.error(getErrorCodeFrom(status));
         else
-            return Result.ok();
+            return Result.ok(r.readEntity(Void.class));
     }
 
 
