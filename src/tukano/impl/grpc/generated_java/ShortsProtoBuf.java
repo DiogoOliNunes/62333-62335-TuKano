@@ -14842,7 +14842,7 @@ public final class ShortsProtoBuf {
       "\030\001 \003(\t\"!\n\017DeleteLikesArgs\022\016\n\006userId\030\001 \001(" +
       "\t\"\023\n\021DeleteLikesResult\"/\n\013GetFeedArgs\022\016\n" +
       "\006userId\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\" \n\rGetFe" +
-      "edResult\022\017\n\007shortId\030\001 \003(\t2\317\003\n\006Shorts\0223\n\013" +
+      "edResult\022\017\n\007shortId\030\001 \003(\t2\204\004\n\006Shorts\0223\n\013" +
       "createShort\022\020.CreateShortArgs\032\022.CreateSh" +
       "ortResult\0223\n\013deleteShort\022\020.DeleteShortAr" +
       "gs\032\022.DeleteShortResult\022*\n\010getShort\022\r.Get" +
@@ -14853,9 +14853,11 @@ public final class ShortsProtoBuf {
       "\n\017deleteFollowers\022\024.DeleteFollowersArgs\032" +
       "\026.DeleteFollowersResult\022\036\n\004like\022\t.LikeAr" +
       "gs\032\013.LikeResult\022!\n\005likes\022\n.LikesArgs\032\014.L" +
-      "ikesResult\022\'\n\007getFeed\022\014.GetFeedArgs\032\016.Ge" +
-      "tFeedResultB1\n\037tukano.impl.grpc.generate" +
-      "d_javaB\016ShortsProtoBufb\006proto3"
+      "ikesResult\0223\n\013deleteLikes\022\020.DeleteLikesA" +
+      "rgs\032\022.DeleteLikesResult\022\'\n\007getFeed\022\014.Get" +
+      "FeedArgs\032\016.GetFeedResultB1\n\037tukano.impl." +
+      "grpc.generated_javaB\016ShortsProtoBufb\006pro" +
+      "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

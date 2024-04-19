@@ -24,6 +24,8 @@ service Shorts {
 
 	rpc likes( LikesArgs ) returns (LikesResult);
 
+	rpc deleteLikes( DeleteLikesArgs ) returns (DeleteLikesResult);
+
 	rpc getFeed( GetFeedArgs) returns (GetFeedResult);
 }
 
