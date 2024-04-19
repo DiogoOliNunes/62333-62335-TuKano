@@ -43,7 +43,7 @@ public class GrpcShortsServerStub extends GrpcServerStub implements ShortsGrpc.A
     }
 
     @Override
-    public void createShort(CreateShortArgs request,  StreamObserver<CreateShortResult> responseObserver) throws MalformedURLException {
+    public void createShort(CreateShortArgs request,  StreamObserver<CreateShortResult> responseObserver)  {
         var res = impl.createShort(request.getUserId(), request.getPassword());
         if( ! res.isOK() )
             responseObserver.onError(errorCodeToStatus(res.error()));
@@ -54,7 +54,7 @@ public class GrpcShortsServerStub extends GrpcServerStub implements ShortsGrpc.A
     }
 
     @Override
-    public void deleteShort(DeleteShortArgs request,  StreamObserver<DeleteShortResult> responseObserver) throws IOException {
+    public void deleteShort(DeleteShortArgs request,  StreamObserver<DeleteShortResult> responseObserver) {
         var res = impl.deleteShort(request.getShortId(), request.getPassword());
         if( ! res.isOK() )
             responseObserver.onError(errorCodeToStatus(res.error()));

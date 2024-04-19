@@ -42,7 +42,7 @@ public class JavaShorts implements Shorts {
     }
 
     @Override
-    public Result<Short> createShort(String userId, String password) throws MalformedURLException {
+    public Result<Short> createShort(String userId, String password) {
         Log.info("create short: user = " + userId);
 
         if(userId == null || password == null) {

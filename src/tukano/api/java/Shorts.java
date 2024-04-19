@@ -34,7 +34,7 @@ public interface Shorts {
 	 * FORBIDDEN, if the password is not correct;
 	 * BAD_REQUEST, otherwise.
 	 */
-	Result<Short> createShort(String userId, String password) throws MalformedURLException;
+	Result<Short> createShort(String userId, String password);
 
 	/**
 	 * Deletes a given Short.
@@ -44,7 +44,7 @@ public interface Shorts {
 	 * NOT_FOUND if shortId does not match an existing short
 	 * FORBIDDEN, if the password is not correct;
 	 */
-	Result<Void> deleteShort(String shortId, String password) throws IOException;
+	Result<Void> deleteShort(String shortId, String password);
 
 
 	/**

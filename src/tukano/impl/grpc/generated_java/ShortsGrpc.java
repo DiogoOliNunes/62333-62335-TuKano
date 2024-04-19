@@ -1,8 +1,5 @@
 package tukano.impl.grpc.generated_java;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
@@ -204,6 +201,37 @@ public final class ShortsGrpc {
     return getFollowersMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs,
+      tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult> getDeleteFollowersMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "deleteFollowers",
+      requestType = tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs.class,
+      responseType = tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs,
+      tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult> getDeleteFollowersMethod() {
+    io.grpc.MethodDescriptor<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs, tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult> getDeleteFollowersMethod;
+    if ((getDeleteFollowersMethod = ShortsGrpc.getDeleteFollowersMethod) == null) {
+      synchronized (ShortsGrpc.class) {
+        if ((getDeleteFollowersMethod = ShortsGrpc.getDeleteFollowersMethod) == null) {
+          ShortsGrpc.getDeleteFollowersMethod = getDeleteFollowersMethod =
+              io.grpc.MethodDescriptor.<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs, tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "deleteFollowers"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult.getDefaultInstance()))
+              .setSchemaDescriptor(new ShortsMethodDescriptorSupplier("deleteFollowers"))
+              .build();
+        }
+      }
+    }
+    return getDeleteFollowersMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeArgs,
       tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeResult> getLikeMethod;
 
@@ -348,14 +376,14 @@ public final class ShortsGrpc {
     /**
      */
     default void createShort(tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortArgs request,
-        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortResult> responseObserver) throws MalformedURLException {
+        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortResult> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateShortMethod(), responseObserver);
     }
 
     /**
      */
     default void deleteShort(tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortArgs request,
-        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortResult> responseObserver) throws IOException {
+        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortResult> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteShortMethod(), responseObserver);
     }
 
@@ -385,6 +413,13 @@ public final class ShortsGrpc {
     default void followers(tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersArgs request,
         io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersResult> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getFollowersMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void deleteFollowers(tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs request,
+        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteFollowersMethod(), responseObserver);
     }
 
     /**
@@ -486,6 +521,14 @@ public final class ShortsGrpc {
 
     /**
      */
+    public void deleteFollowers(tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs request,
+        io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getDeleteFollowersMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
     public void like(tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeArgs request,
         io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeResult> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
@@ -565,6 +608,13 @@ public final class ShortsGrpc {
     public tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersResult followers(tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersArgs request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getFollowersMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult deleteFollowers(tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getDeleteFollowersMethod(), getCallOptions(), request);
     }
 
     /**
@@ -655,6 +705,14 @@ public final class ShortsGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult> deleteFollowers(
+        tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getDeleteFollowersMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeResult> like(
         tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeArgs request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -684,9 +742,10 @@ public final class ShortsGrpc {
   private static final int METHODID_GET_SHORTS = 3;
   private static final int METHODID_FOLLOW = 4;
   private static final int METHODID_FOLLOWERS = 5;
-  private static final int METHODID_LIKE = 6;
-  private static final int METHODID_LIKES = 7;
-  private static final int METHODID_GET_FEED = 8;
+  private static final int METHODID_DELETE_FOLLOWERS = 6;
+  private static final int METHODID_LIKE = 7;
+  private static final int METHODID_LIKES = 8;
+  private static final int METHODID_GET_FEED = 9;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -706,20 +765,12 @@ public final class ShortsGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_CREATE_SHORT:
-          try {
-            serviceImpl.createShort((ShortsProtoBuf.CreateShortArgs) request,
-                (io.grpc.stub.StreamObserver<ShortsProtoBuf.CreateShortResult>) responseObserver);
-          } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-          }
+          serviceImpl.createShort((tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortArgs) request,
+              (io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortResult>) responseObserver);
           break;
         case METHODID_DELETE_SHORT:
-          try {
-            serviceImpl.deleteShort((ShortsProtoBuf.DeleteShortArgs) request,
-                (io.grpc.stub.StreamObserver<ShortsProtoBuf.DeleteShortResult>) responseObserver);
-          } catch (IOException e) {
-            throw new RuntimeException(e);
-          }
+          serviceImpl.deleteShort((tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortArgs) request,
+              (io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortResult>) responseObserver);
           break;
         case METHODID_GET_SHORT:
           serviceImpl.getShort((tukano.impl.grpc.generated_java.ShortsProtoBuf.GetShortArgs) request,
@@ -736,6 +787,10 @@ public final class ShortsGrpc {
         case METHODID_FOLLOWERS:
           serviceImpl.followers((tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersArgs) request,
               (io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersResult>) responseObserver);
+          break;
+        case METHODID_DELETE_FOLLOWERS:
+          serviceImpl.deleteFollowers((tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs) request,
+              (io.grpc.stub.StreamObserver<tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult>) responseObserver);
           break;
         case METHODID_LIKE:
           serviceImpl.like((tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeArgs) request,
@@ -809,6 +864,13 @@ public final class ShortsGrpc {
               tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersArgs,
               tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersResult>(
                 service, METHODID_FOLLOWERS)))
+        .addMethod(
+          getDeleteFollowersMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs,
+              tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult>(
+                service, METHODID_DELETE_FOLLOWERS)))
         .addMethod(
           getLikeMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -884,6 +946,7 @@ public final class ShortsGrpc {
               .addMethod(getGetShortsMethod())
               .addMethod(getFollowMethod())
               .addMethod(getFollowersMethod())
+              .addMethod(getDeleteFollowersMethod())
               .addMethod(getLikeMethod())
               .addMethod(getLikesMethod())
               .addMethod(getGetFeedMethod())

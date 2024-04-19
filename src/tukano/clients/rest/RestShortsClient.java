@@ -49,7 +49,7 @@ public class RestShortsClient extends RestClient implements Shorts {
     }
 
     @Override
-    public Result<Short> createShort(String userId, String password) throws MalformedURLException {
+    public Result<Short> createShort(String userId, String password) {
         for (int i = 0; i < MAX_RETRIES; i++) {
             try {
                 Response r = target.request()
