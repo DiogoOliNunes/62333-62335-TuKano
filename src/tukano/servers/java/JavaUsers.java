@@ -107,7 +107,7 @@ public class JavaUsers implements Users {
             return result;
 
         List<String> userShorts = shortsClient.getShorts(userId).value();
-        userShorts.forEach(userShort -> shortsClient.deleteShort(userShort, pwd)); // da erro
+        userShorts.forEach(userShort -> shortsClient.deleteShort(userShort, pwd));
 
         shortsClient.deleteFollowers(userId);
         shortsClient.deleteLikes(userId);

@@ -3,10 +3,8 @@ package tukano.servers.grpc;
 import io.grpc.BindableService;
 import io.grpc.ServerServiceDefinition;
 import io.grpc.stub.StreamObserver;
-import tukano.api.java.Result;
 import tukano.api.java.Shorts;
 import tukano.impl.grpc.generated_java.ShortsGrpc;
-import tukano.impl.grpc.generated_java.ShortsProtoBuf;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortArgs;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortArgs;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.GetShortArgs;
@@ -16,6 +14,8 @@ import tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersArgs;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersArgs;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeArgs;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.LikesArgs;
+import tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteLikesArgs;
+import tukano.impl.grpc.generated_java.ShortsProtoBuf.GetFeedArgs;
 
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.CreateShortResult;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteShortResult;
@@ -26,14 +26,13 @@ import tukano.impl.grpc.generated_java.ShortsProtoBuf.FollowersResult;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteFollowersResult;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.LikeResult;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf.LikesResult;
+import tukano.impl.grpc.generated_java.ShortsProtoBuf.DeleteLikesResult;
+import tukano.impl.grpc.generated_java.ShortsProtoBuf.GetFeedResult;
 
 import tukano.servers.java.JavaShorts;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.List;
 
-import static utils.DataModelAdaptor.GrpcShort_to_Short;
 import static utils.DataModelAdaptor.Short_to_GrpcShort;
 
 
@@ -155,20 +154,28 @@ public class GrpcShortsServerStub extends GrpcServerStub implements ShortsGrpc.A
         }
     }
 
-    /*
     @Override
-    public void deleteLikes(DeleteLikes request, StreamObserver<DeleteLikesResult> responseObserver) {
-        var res = impl.likes(request.getShortId(), request.getPassword());
+    public void deleteLikes(DeleteLikesArgs request, StreamObserver<DeleteLikesResult> responseObserver) {
+        var res = impl.deleteLikes(request.getUserId());
+        if( !res.isOK() )
+            responseObserver.onError(errorCodeToStatus(res.error()));
+        else {
+            responseObserver.onNext(DeleteLikesResult.newBuilder().build());
+            responseObserver.onCompleted();
+        }
+    }
+
+    @Override
+    public void getFeed(GetFeedArgs request, StreamObserver<GetFeedResult> responseObserver) {
+        var res = impl.getFeed(request.getUserId(), request.getPassword());
         if( !res.isOK() )
             responseObserver.onError(errorCodeToStatus(res.error()));
         else {
             List<String> returns = res.value();
-            var likeRes = LikesResult.newBuilder();
-            returns.forEach(likeRes::addUserId);
-            responseObserver.onNext(likeRes.build());
+            var feedRes = GetFeedResult.newBuilder();
+            returns.forEach(feedRes::addShortId);
+            responseObserver.onNext(feedRes.build());
             responseObserver.onCompleted();
         }
     }
-     */
-
 }
