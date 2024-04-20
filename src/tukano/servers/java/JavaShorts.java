@@ -10,11 +10,8 @@ import tukano.api.java.Shorts;
 
 import tukano.clients.factories.BlobsClientFactory;
 import tukano.clients.factories.UsersClientFactory;
-import tukano.clients.rest.RestBlobsClient;
-import tukano.clients.rest.RestUsersClient;
 import tukano.persistence.Hibernate;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.*;
 import java.util.logging.Logger;
@@ -63,7 +60,6 @@ public class JavaShorts implements Shorts {
         Log.info("delete short: short = " + shortId + "; pwd = " + password);
         userURI = Discovery.getInstance().knownUrisOf("users",1);
 
-
         Result<Short> shortToBeDeleted = getShort(shortId);
         if (!shortToBeDeleted.isOK()) return Result.error(shortToBeDeleted.error());
 
@@ -71,7 +67,7 @@ public class JavaShorts implements Shorts {
         if (!result.isOK()) {
             return Result.error(result.error());
         }
-        Log.info("vou desfalecer ajuda");
+
         List<LikeShort> shortLikes = Hibernate.getInstance().sql("SELECT * FROM LikeShort l WHERE l.shortLiked LIKE '"
                 + shortId + "'", LikeShort.class);
         shortLikes.forEach(like -> Hibernate.getInstance().delete(like));
@@ -79,12 +75,10 @@ public class JavaShorts implements Shorts {
 
         Result<Void> resultBlob = BlobsClientFactory.getClient(getRightServer(blobURI, shortToBeDeleted.value())).deleteBlob(shortId);
 
-        if (!resultBlob.isOK()) {
-            Log.info("se estás a ler isto - parabens encontras te o erro seu cao derramado");
+        if (!resultBlob.isOK())
             return Result.error(resultBlob.error());
-        }
-        Log.info("está a finalizar");
-        Hibernate.getInstance().delete(shortToBeDeleted.value()); /// ter atençao... ELIMINAR ANTES OU DEPOIS?
+
+        Hibernate.getInstance().delete(shortToBeDeleted.value());
         return Result.ok();
     }
 
@@ -188,12 +182,10 @@ public class JavaShorts implements Shorts {
 
     private void changeLikesNr(Short userShort, boolean isLiked) {
         int shortLikes = userShort.getTotalLikes();
-        if (isLiked) {
+        if (isLiked)
             userShort.setTotalLikes(shortLikes+1);
-        }
-        else {
+        else
             userShort.setTotalLikes(shortLikes-1);
-        }
         Hibernate.getInstance().update(userShort);
     }
 
@@ -211,7 +203,6 @@ public class JavaShorts implements Shorts {
 
         if (isLiked) {
             LikeShort newLikeShort = new LikeShort(UUID.randomUUID().toString(), shortId, userId);
-
             Hibernate.getInstance().persist(newLikeShort);
         }
         else {
@@ -271,9 +262,8 @@ public class JavaShorts implements Shorts {
         Log.info("feed : user = " + userId);
 
         Result<List<String>> followingResult = following(userId, password);
-        if (!followingResult.isOK()) {
+        if (!followingResult.isOK())
             return Result.error(followingResult.error());
-        }
 
         List<String> feed = getShorts(userId).value();
         List<String> following = followingResult.value();
@@ -299,21 +289,17 @@ public class JavaShorts implements Shorts {
         return blobShorts.size();
     }
 
-
     private URI getRightServer(URI[] URIs, Short shortEliminated) {
         Log.info("Getting the right server of short " + shortEliminated.getShortId());
 
         URI rightURI = null;
 
-        if (URIs.length == 0) {
-            return null;
-        }
+        if (URIs.length == 0) return null;
 
         if (shortEliminated != null) {
             for (int i = 0; i < URIs.length; i++) {
-                if (shortEliminated.getBlobUrl().contains(URIs[i].toString())) {
+                if (shortEliminated.getBlobUrl().contains(URIs[i].toString()))
                     rightURI = URIs[i];
-                }
             }
             return rightURI;
         } else {
@@ -321,5 +307,4 @@ public class JavaShorts implements Shorts {
             return null;
         }
     }
-
 }

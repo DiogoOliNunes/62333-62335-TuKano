@@ -3,7 +3,6 @@ package tukano.clients.rest;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
-import tukano.api.Short;
 import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Users;

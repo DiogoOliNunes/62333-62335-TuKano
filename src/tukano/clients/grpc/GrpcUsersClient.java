@@ -90,7 +90,5 @@ public class GrpcUsersClient extends GrpcClient implements Users {
             res.forEachRemaining(grpcUser -> users.add(GrpcUser_to_User(grpcUser)));
             return users;
         });
-
     }
-
 }

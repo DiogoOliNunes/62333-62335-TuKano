@@ -53,7 +53,7 @@ public class RestShortsClient extends RestClient implements Shorts {
         return super.reTry( () -> clt_createShort(userId, password));
     }
 
-    private Result<Short> clt_createShort(String userId, String password) { //todo: isto esta mal
+    private Result<Short> clt_createShort(String userId, String password) {
         for (int i = 0; i < MAX_RETRIES; i++) {
             try {
                 Response r = target.request()

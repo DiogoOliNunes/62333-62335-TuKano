@@ -5,7 +5,6 @@ import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Users;
 import tukano.clients.factories.ShortsClientFactory;
-import tukano.clients.rest.RestShortsClient;
 import tukano.persistence.Hibernate;
 
 import java.net.URI;
@@ -58,7 +57,7 @@ public class JavaUsers implements Users {
             return Result.error( Result.ErrorCode.NOT_FOUND);
         }
         User user = result.get(0);
-        //Check if the password is correct
+
         if( !user.pwd().equals( pwd)) {
             Log.info("Password is incorrect.");
             return Result.error( Result.ErrorCode.FORBIDDEN);
@@ -86,7 +85,7 @@ public class JavaUsers implements Users {
         if (updatedUser.pwd() != null)
             oldUser.setPwd(updatedUser.pwd());
         if (updatedUser.email() != null)
-            oldUser.setPwd(updatedUser.email());
+            oldUser.setEmail(updatedUser.email());
         if (updatedUser.displayName() != null)
             oldUser.setDisplayName(updatedUser.displayName());
 
