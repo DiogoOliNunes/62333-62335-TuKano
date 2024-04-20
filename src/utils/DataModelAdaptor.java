@@ -7,6 +7,8 @@ import tukano.impl.grpc.generated_java.UsersProtoBuf.GrpcUser;
 
 public class DataModelAdaptor {
 
+    public DataModelAdaptor() {}
+
     public static User GrpcUser_to_User(GrpcUser from )  {
         return new User(
                 emptyStringToNull(from.getUserId()),

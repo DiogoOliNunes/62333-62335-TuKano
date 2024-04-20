@@ -10,6 +10,9 @@ import static tukano.api.java.Result.error;
 import static tukano.api.java.Result.ok;
 
 public class GrpcClient {
+
+    public GrpcClient() {}
+
     static <T> Result<T> toJavaResult(Supplier<T> func) {
         try {
             return ok(func.get());

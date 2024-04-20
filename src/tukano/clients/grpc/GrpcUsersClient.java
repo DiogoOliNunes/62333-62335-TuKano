@@ -21,12 +21,13 @@ import tukano.impl.grpc.generated_java.UsersProtoBuf.SearchUserArgs;
 
 public class GrpcUsersClient extends GrpcClient implements Users {
 
-    private static final long GRPC_REQUEST_TIMEOUT = 5000;
+    //private static final long GRPC_REQUEST_TIMEOUT = 5000;
     final UsersGrpc.UsersBlockingStub stub;
 
     public GrpcUsersClient(URI serverURI) {
         var channel = ManagedChannelBuilder.forAddress(serverURI.getHost(), serverURI.getPort()).usePlaintext().build();
-        stub = UsersGrpc.newBlockingStub( channel ).withDeadlineAfter(GRPC_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS);
+        stub = UsersGrpc.newBlockingStub(channel);
+        //stub = UsersGrpc.newBlockingStub( channel ).withDeadlineAfter(GRPC_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 
     @Override

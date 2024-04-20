@@ -18,17 +18,23 @@ import static utils.DataModelAdaptor.User_to_GrpcUser;
 
 public class GrpcShortsClient extends GrpcClient implements Shorts {
 
-    private static final long GRPC_REQUEST_TIMEOUT = 5000;
+    //private static final long GRPC_REQUEST_TIMEOUT = 5000;
     final ShortsGrpc.ShortsBlockingStub stub;
 
     public GrpcShortsClient(URI serverURI) {
         var channel = ManagedChannelBuilder.forAddress(serverURI.getHost(), serverURI.getPort()).usePlaintext().build();
-        stub = ShortsGrpc.newBlockingStub( channel ).withDeadlineAfter(GRPC_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS);
+        stub = ShortsGrpc.newBlockingStub(channel);
+        //stub = ShortsGrpc.newBlockingStub( channel ).withDeadlineAfter(GRPC_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 
     @Override
     public Result<Short> createShort(String userId, String password) {
-        return null;
+        return toJavaResult(() -> {
+            var res = stub.createShort(ShortsProtoBuf.CreateShortArgs.newBuilder()
+                    .setUserId(userId)
+                    .setPassword(password).build());
+            return GrpcShort_to_Short(res.getValue());
+        });
     }
 
     @Override
@@ -64,27 +70,61 @@ public class GrpcShortsClient extends GrpcClient implements Shorts {
 
     @Override
     public Result<Void> follow(String userId1, String userId2, boolean isFollowing, String password) {
-        return null;
+        return toJavaResult(() -> {
+            var res = stub.follow(ShortsProtoBuf.FollowArgs.newBuilder()
+                    .setUserId1(userId1)
+                    .setUserId2(userId2)
+                    .setIsFollowing(isFollowing)
+                    .setPassword(password)
+                    .build());
+            return null;
+        });
     }
 
     @Override
     public Result<List<String>> followers(String userId, String password) {
-        return null;
+        return toJavaResult(() -> {
+            var res = stub.followers(ShortsProtoBuf.FollowersArgs.newBuilder()
+                    .setUserId(userId)
+                    .setPassword(password)
+                    .build());
+            return res.getUserIdList();
+        });
     }
 
     @Override
     public Result<Void> like(String shortId, String userId, boolean isLiked, String password) {
-        return null;
+        return toJavaResult(() -> {
+            var res = stub.like(ShortsProtoBuf.LikeArgs.newBuilder()
+                    .setShortId(shortId)
+                    .setUserId(userId)
+                    .setIsLiked(isLiked)
+                    .setPassword(password)
+                    .build());
+            return null;
+        });
     }
 
     @Override
     public Result<List<String>> likes(String shortId, String password) {
-        return null;
+        return toJavaResult(() -> {
+            var res = stub.likes(ShortsProtoBuf.LikesArgs.newBuilder()
+                    .setShortId(shortId)
+                    .setPassword(password)
+                    .build());
+            return res.getUserIdList();
+        });
     }
 
     @Override
     public Result<List<String>> getFeed(String userId, String password) {
-        return null;
+        return toJavaResult(() -> {
+            var res = stub.getFeed(ShortsProtoBuf.GetFeedArgs.newBuilder()
+                    .setUserId(userId)
+                    .setPassword(password)
+                    .build());
+            return res.getShortIdList();
+        });
     }
 
     @Override

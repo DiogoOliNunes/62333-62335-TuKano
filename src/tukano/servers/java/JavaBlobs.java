@@ -21,7 +21,6 @@ public class JavaBlobs implements Blobs {
     Hibernate datastore;
     URI[] uri;
     public JavaBlobs() {
-        createBlobsDirectory();
 
         datastore = Hibernate.getInstance();
         uri = Discovery.getInstance().knownUrisOf("shorts",1);
@@ -33,8 +32,6 @@ public class JavaBlobs implements Blobs {
 
         if (!ShortsClientFactory.getClient(uri[0]).getShort(blobId).value().getShortId().equals(blobId)) {
             Log.info("Blob ID invalid.");
-
-
             return Result.error(Result.ErrorCode.FORBIDDEN);
         }
 

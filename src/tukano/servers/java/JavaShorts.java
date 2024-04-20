@@ -26,12 +26,10 @@ public class JavaShorts implements Shorts {
     URI[] userURI;
     URI[] blobURI;
 
-    public JavaShorts () {
-        datastore = Hibernate.getInstance();
-        userURI = Discovery.getInstance().knownUrisOf("users",1);
-        blobURI = Discovery.getInstance().knownUrisOf("blobs",1);
-    }
+    public JavaShorts () {}
+
     private Result<User> getUser(String userId) {
+        userURI = Discovery.getInstance().knownUrisOf("users",1);
         List<User> result = UsersClientFactory.getClient(userURI[0]).searchUsers(userId).value();
         if (result.isEmpty())
             return Result.error(Result.ErrorCode.NOT_FOUND);
@@ -48,19 +46,24 @@ public class JavaShorts implements Shorts {
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
 
+        userURI = Discovery.getInstance().knownUrisOf("users",1);
         Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
 
+        blobURI = Discovery.getInstance().knownUrisOf("blobs",1);
+
         String id = UUID.randomUUID().toString();
         Short newShort = new Short(id, userId, getServer(blobURI) + "/" + id);
-        datastore.persist(newShort);
+        Hibernate.getInstance().persist(newShort);
         return Result.ok(newShort);
     }
 
     @Override
     public Result<Void> deleteShort(String shortId, String password) {
         Log.info("delete short: short = " + shortId + "; pwd = " + password);
+        userURI = Discovery.getInstance().knownUrisOf("users",1);
+        datastore = Hibernate.getInstance();
 
         Result<Short> shortToBeDeleted = getShort(shortId);
         Log.info("campeao jumento galinacceio -> " + shortToBeDeleted.isOK() );
@@ -96,7 +99,7 @@ public class JavaShorts implements Shorts {
     public Result<Short> getShort(String shortId) {
         Log.info("getting short: short = " + shortId);
 
-        List<Short> result = datastore.sql("SELECT * FROM Short s WHERE s.shortId LIKE '" + shortId + "'",
+        List<Short> result = Hibernate.getInstance().sql("SELECT * FROM Short s WHERE s.shortId LIKE '" + shortId + "'",
                 Short.class);
         if (result.isEmpty())
             return Result.error(Result.ErrorCode.NOT_FOUND);
@@ -111,7 +114,7 @@ public class JavaShorts implements Shorts {
             return Result.error(result.error());
 
         List<String> shorts =
-                datastore.sql("SELECT s.shortId FROM Short s WHERE s.ownerId LIKE '"
+                Hibernate.getInstance().sql("SELECT s.shortId FROM Short s WHERE s.ownerId LIKE '"
                         + userId + "'", String.class);
         return Result.ok(shorts);
     }
@@ -123,6 +126,8 @@ public class JavaShorts implements Shorts {
             Log.info("Arguments invalid.");
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
+
+        userURI = Discovery.getInstance().knownUrisOf("users",1);
         Result<User> result1 = UsersClientFactory.getClient(userURI[0]).getUser(userId1, password);
         Result<User> result2 = getUser(userId2);
         if (!result1.isOK())
@@ -131,6 +136,7 @@ public class JavaShorts implements Shorts {
         if (!result2.isOK())
             return Result.error(result2.error());
 
+        datastore = Hibernate.getInstance();
         List<Follow> follow = datastore.sql("SELECT * FROM Follow f WHERE f.followed = '"
                 + userId2 + "' AND f.follower = '" + userId1 + "'", Follow.class);
 
@@ -152,6 +158,7 @@ public class JavaShorts implements Shorts {
     public Result<List<String>> followers(String userId, String password) {
         Log.info("followers : user = " + userId);
 
+        userURI = Discovery.getInstance().knownUrisOf("users",1);
         Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
@@ -176,6 +183,7 @@ public class JavaShorts implements Shorts {
     private Result<List<String>> following(String userId, String password) {
         Log.info("following : user = " + userId);
 
+        userURI = Discovery.getInstance().knownUrisOf("users",1);
         Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
@@ -240,6 +248,8 @@ public class JavaShorts implements Shorts {
             Log.info("Short does not exist.");
             return Result.error(Result.ErrorCode.NOT_FOUND);
         }
+
+        userURI = Discovery.getInstance().knownUrisOf("users",1);
         Result<User> ownerResult = UsersClientFactory.getClient(userURI[0]).getUser(shortResult.value().getOwnerId(), password);
         if (!ownerResult.isOK()) {
             Log.info("Password is incorrect.");
