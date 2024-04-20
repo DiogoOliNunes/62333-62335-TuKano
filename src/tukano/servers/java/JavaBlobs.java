@@ -27,14 +27,6 @@ public class JavaBlobs implements Blobs {
         uri = Discovery.getInstance().knownUrisOf("shorts",1);
     }
 
-    private void createBlobsDirectory() {
-        try {
-            Files.createDirectories(Path.of(BLOB_COLLECTION));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public Result<Void> upload(String blobId, byte[] bytes) {
         Log.info("Upload of blob: " + blobId);
@@ -91,16 +83,19 @@ public class JavaBlobs implements Blobs {
     public Result<Void> deleteBlob(String blobId) {
         Log.info("Delete of blob: " + blobId);
 
-        try {
+        try {       ////FAZER A VERIFICAÇÃO DA EXISTENCIA DA DIRETORIA
+            Path dir = Paths.get(BLOB_COLLECTION);
+            if (!Files.isDirectory(dir)) return Result.ok(); //Checks if exists a blob server
             Path blobPath = Path.of(BLOB_COLLECTION, blobId);
             Log.info("aqui está o kelk: " + blobPath);
-            if (!ShortsClientFactory.getClient(uri[0]).getShort(blobId).isOK()) {
+
+            if (!Files.exists(blobPath)) {
                 Log.info("encontraste o erro boua");
                 return Result.error(Result.ErrorCode.NOT_FOUND);
             }
             Log.info("O ficheiro existe antes do delete? -> " + Files.exists(blobPath));
             //Files.deleteIfExists
-            if (Files.exists(blobPath)) Files.delete(blobPath);
+            Files.delete(blobPath);
             Log.info("O ficheiro existe depois do delete? -> " + Files.exists(blobPath));
             return Result.ok();
         } catch (IOException e) {

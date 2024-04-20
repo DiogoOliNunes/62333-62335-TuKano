@@ -63,17 +63,22 @@ public class JavaShorts implements Shorts {
         Log.info("delete short: short = " + shortId + "; pwd = " + password);
 
         Result<Short> shortToBeDeleted = getShort(shortId);
+        Log.info("campeao jumento galinacceio -> " + shortToBeDeleted.isOK() );
         if (!shortToBeDeleted.isOK()) return Result.error(shortToBeDeleted.error());
+
+        Log.info("passou apesarzinho de ser -> " + shortToBeDeleted.isOK() );
         Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(shortToBeDeleted.value().getOwnerId(), password);
-        if (!result.isOK())
+        if (!result.isOK()) {
+            Log.info("pois meu bem, é lidazinh");
             return Result.error(result.error());
-
-        datastore.delete(shortToBeDeleted.value());
-
+        }
+        Log.info("vou desfalecer ajuda");
         List<LikeShort> shortLikes = datastore.sql("SELECT * FROM LikeShort l WHERE l.shortLiked LIKE '"
                 + shortId + "'", LikeShort.class);
-
+        Log.info("ainda estou vivo ufa");
         shortLikes.forEach(like -> datastore.delete(like));
+        Log.info("o erro nao era disto seu kelk");
+        blobURI = Discovery.getInstance().knownUrisOf("blobs",1);
         Log.info("palalolico: " + getRightServer(blobURI, shortToBeDeleted.value()));
 
         Result<Void> resultBlob = BlobsClientFactory.getClient(getRightServer(blobURI, shortToBeDeleted.value())).deleteBlob(shortId);
@@ -83,7 +88,7 @@ public class JavaShorts implements Shorts {
             return Result.error(resultBlob.error());
         }
         Log.info("está a finalizar");
-
+        datastore.delete(shortToBeDeleted.value()); /// ter atençao... ELIMINAR ANTES OU DEPOIS?
         return Result.ok();
     }
 
@@ -151,7 +156,7 @@ public class JavaShorts implements Shorts {
         if (!result.isOK())
             return Result.error(result.error());
 
-        List<String> followers = datastore.sql("SELECT f.follower FROM Follow f WHERE f.followed = '"
+        List<String> followers = Hibernate.getInstance().sql("SELECT f.follower FROM Follow f WHERE f.followed = '"
                 + userId + "'", String.class);
 
         return Result.ok(followers);
@@ -159,6 +164,7 @@ public class JavaShorts implements Shorts {
 
     @Override
     public Result<Void> deleteFollowers(String userId) {
+        datastore = Hibernate.getInstance();
         Log.info("delete followers : user = " + userId);
         List<Follow> follows = datastore.sql("SELECT * FROM Follow f WHERE f.followed = '" + userId +
                 "' OR f.follower = '" + userId + "'", Follow.class);
@@ -174,7 +180,7 @@ public class JavaShorts implements Shorts {
         if (!result.isOK())
             return Result.error(result.error());
 
-        List<String> following = datastore.sql("SELECT f.followed FROM Follow f WHERE f.follower = '"
+        List<String> following = Hibernate.getInstance().sql("SELECT f.followed FROM Follow f WHERE f.follower = '"
                 + userId + "'", String.class);
 
         return Result.ok(following);
@@ -189,12 +195,13 @@ public class JavaShorts implements Shorts {
         else {
             userShort.setTotalLikes(shortLikes-1);
         }
-        datastore.update(userShort);
+        Hibernate.getInstance().update(userShort);
     }
 
     @Override
     public Result<Void> like(String shortId, String userId, boolean isLiked, String password) {
         Log.info("like : short = " + shortId + "; user = " + userId);
+        datastore = Hibernate.getInstance();
 
         Result<Short> shortResult = getShort(shortId);
         if (!shortResult.isOK()) {
@@ -239,7 +246,7 @@ public class JavaShorts implements Shorts {
             return Result.error( Result.ErrorCode.FORBIDDEN);
         }
 
-        List<String> likes = datastore.sql("SELECT l.user FROM LikeShort l WHERE l.shortLiked LIKE '"
+        List<String> likes = Hibernate.getInstance().sql("SELECT l.user FROM LikeShort l WHERE l.shortLiked LIKE '"
                 + shortId + "'", String.class);
 
         return Result.ok(likes);
@@ -247,6 +254,7 @@ public class JavaShorts implements Shorts {
 
     public Result<Void> deleteLikes(String userId) {
         Log.info("delete likes : user = " + userId);
+        datastore = Hibernate.getInstance();
 
         List<LikeShort> likes = datastore.sql("SELECT * FROM LikeShort l WHERE l.user = '"
                 + userId + "'", LikeShort.class);
@@ -272,7 +280,7 @@ public class JavaShorts implements Shorts {
         List<String> following = followingResult.value();
 
         if (!following.isEmpty()) {
-            feed.addAll(datastore.sql("SELECT s.shortId FROM Short s JOIN Follow f " +
+            feed.addAll(Hibernate.getInstance().sql("SELECT s.shortId FROM Short s JOIN Follow f " +
                     "ON s.ownerId = f.followed WHERE f.follower = '" + userId + "'", String.class));
         }
 
@@ -291,7 +299,7 @@ public class JavaShorts implements Shorts {
     }
 
     private int getBlobSize(URI uri) {
-        List<Short> blobShorts = datastore.sql("SELECT * FROM Short s WHERE s.blobUrl LIKE '"
+        List<Short> blobShorts = Hibernate.getInstance().sql("SELECT * FROM Short s WHERE s.blobUrl LIKE '"
                 + uri.toString() + "%'", Short.class);
         return blobShorts.size();
     }

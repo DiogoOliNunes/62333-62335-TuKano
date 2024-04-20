@@ -75,7 +75,7 @@ public class JavaUsers implements Users {
     public Result<User> updateUser(String userId, String pwd, User user) {
         Log.info("updateUser : user = " + userId + "; pwd = " + pwd + "\n" + "newUser = " + user);
 
-        if (user.userId() != null)
+        if (!userId.equals(user.userId()) && user.userId() != null)
             return Result.error(Result.ErrorCode.BAD_REQUEST);
 
         var result = getUser(userId, pwd);

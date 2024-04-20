@@ -7,7 +7,7 @@ import utils.Sleep;
 import java.util.function.Supplier;
 
 public class RestClient {
-    protected static final int MAX_RETRIES = 10;
+    protected static final int MAX_RETRIES = 1;
     protected static final int RETRY_SLEEP = 1000;
 
     protected <T> Result<T> reTry(Supplier<Result<T>> func) {

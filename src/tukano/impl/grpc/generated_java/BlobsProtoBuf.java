@@ -3176,12 +3176,12 @@ public final class BlobsProtoBuf {
       "\014UploadResult\"\036\n\014DownloadArgs\022\016\n\006blobId\030" +
       "\001 \001(\t\"\037\n\016DownloadResult\022\r\n\005chunk\030\001 \001(\014\" " +
       "\n\016DeleteBlobArgs\022\016\n\006blobId\030\001 \001(\t\"\022\n\020Dele" +
-      "teBlobResult2\225\001\n\005Blobs\022&\n\006upload\022\013.Uploa" +
+      "teBlobResult2\223\001\n\005Blobs\022&\n\006upload\022\013.Uploa" +
       "dArgs\032\r.UploadResult\"\000\022.\n\010download\022\r.Dow" +
-      "nloadArgs\032\017.DownloadResult\"\0000\001\0224\n\ndelete" +
+      "nloadArgs\032\017.DownloadResult\"\0000\001\0222\n\ndelete" +
       "Blob\022\017.DeleteBlobArgs\032\021.DeleteBlobResult" +
-      "\"\0000\001B0\n\037tukano.impl.grpc.generated_javaB" +
-      "\rBlobsProtoBufb\006proto3"
+      "\"\000B0\n\037tukano.impl.grpc.generated_javaB\rB" +
+      "lobsProtoBufb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
