@@ -6,7 +6,6 @@ import static utils.DataModelAdaptor.GrpcUser_to_User;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import io.grpc.ManagedChannelBuilder;
 import tukano.api.java.Result;
@@ -18,8 +17,10 @@ import tukano.impl.grpc.generated_java.UsersProtoBuf.GetUserArgs;
 import tukano.impl.grpc.generated_java.UsersProtoBuf.UpdateUserArgs;
 import tukano.impl.grpc.generated_java.UsersProtoBuf.DeleteUserArgs;
 import tukano.impl.grpc.generated_java.UsersProtoBuf.SearchUserArgs;
+import java.util.logging.Logger;
 
 public class GrpcUsersClient extends GrpcClient implements Users {
+    private static Logger Log = Logger.getLogger(GrpcUsersClient.class.getName());
 
     //private static final long GRPC_REQUEST_TIMEOUT = 5000;
     final UsersGrpc.UsersBlockingStub stub;
@@ -86,7 +87,6 @@ public class GrpcUsersClient extends GrpcClient implements Users {
 
             List<User> users = new ArrayList<>();
             res.forEachRemaining(grpcUser -> users.add(GrpcUser_to_User(grpcUser)));
-
             return users;
         });
     }

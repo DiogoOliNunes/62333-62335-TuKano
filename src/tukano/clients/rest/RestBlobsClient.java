@@ -25,11 +25,11 @@ public class RestBlobsClient  extends RestClient implements Blobs {
 
     private static Logger Log = Logger.getLogger(RestBlobsClient.class.getName());
 
-    protected static final int READ_TIMEOUT = 5000;
-    protected static final int CONNECT_TIMEOUT = 5000;
+    protected static final int READ_TIMEOUT = 30000;
+    protected static final int CONNECT_TIMEOUT = 30000;
 
-    protected static final int MAX_RETRIES = 10;
-    protected static final int RETRY_SLEEP = 5000;
+    protected static final int MAX_RETRIES = 3;
+    protected static final int RETRY_SLEEP = 1000;
 
     final URI serverURI;
     final Client client;

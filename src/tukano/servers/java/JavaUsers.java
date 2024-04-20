@@ -117,6 +117,7 @@ public class JavaUsers implements Users {
     @Override
     public Result<List<User>> searchUsers(String pattern) { //TODO: tratar de quando e badrequest
         Log.info("searchUsers : pattern = " + pattern);
+
         List<User> users = Hibernate.getInstance().sql("SELECT * FROM User", User.class);
 
         if (pattern != null) users.removeIf(user -> !user.userId().toLowerCase().contains(pattern.toLowerCase()));

@@ -80,11 +80,14 @@ public class GrpcUsersServerStub extends GrpcServerStub implements UsersGrpc.Asy
     @Override
     public void searchUsers(SearchUserArgs request, StreamObserver<GrpcUser> responseObserver) {
         var res = impl.searchUsers(request.getPattern());
-        if( ! res.isOK() )
+        if(!res.isOK())
             responseObserver.onError(errorCodeToStatus(res.error()));
         else {
             List<User> users = res.value();
-            users.forEach(DataModelAdaptor::User_to_GrpcUser);
+            for (User user : users) {
+                GrpcUser grpcUser = User_to_GrpcUser(user);
+                responseObserver.onNext(grpcUser);
+            }
             responseObserver.onCompleted();
         }
     }
