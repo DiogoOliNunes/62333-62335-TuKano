@@ -10,8 +10,8 @@ import tukano.impl.grpc.generated_java.BlobsProtoBuf.UploadArgs;
 import tukano.impl.grpc.generated_java.BlobsProtoBuf.DownloadArgs;
 import tukano.impl.grpc.generated_java.BlobsProtoBuf.UploadResult;
 import tukano.impl.grpc.generated_java.BlobsProtoBuf.DownloadResult;
-//import tukano.impl.grpc.generated_java.BlobsProtoBuf.DeleteBlobArg;
-//import tukano.impl.grpc.generated_java.BlobsProtoBuf.DeleteBlobResult;
+import tukano.impl.grpc.generated_java.BlobsProtoBuf.DeleteBlobArgs;
+import tukano.impl.grpc.generated_java.BlobsProtoBuf.DeleteBlobResult;
 import tukano.servers.java.JavaBlobs;
 
 import static utils.DataModelAdaptor.GrpcUser_to_User;
@@ -44,7 +44,6 @@ public class GrpcBlobsServerStub extends GrpcServerStub implements BlobsGrpc.Asy
         }
     }
 
-    /*
     @Override
     public void deleteBlob(DeleteBlobArgs request, StreamObserver<DeleteBlobResult> responseObserver) {
         var res = impl.deleteBlob(request.getBlobId());
@@ -55,7 +54,5 @@ public class GrpcBlobsServerStub extends GrpcServerStub implements BlobsGrpc.Asy
             responseObserver.onCompleted();
         }
     }
-     */
-
 
 }

@@ -50,6 +50,10 @@ public class RestBlobsClient  extends RestClient implements Blobs {
 
     @Override
     public Result<Void> upload(String blobId, byte[] bytes) {
+        return super.reTry( () -> clt_upload(blobId, bytes));
+    }
+
+    private Result<Void> clt_upload(String blobId, byte[] bytes) {
         for (int i = 0; i < MAX_RETRIES; i++) {
             try {
                 Response response = target.path(blobId)
@@ -71,6 +75,10 @@ public class RestBlobsClient  extends RestClient implements Blobs {
 
     @Override
     public Result<byte[]> download(String blobId) {
+        return super.reTry( () -> clt_download(blobId));
+    }
+
+    private Result<byte[]> clt_download(String blobId) {
         Response response = target.path(blobId)
                 .request(MediaType.APPLICATION_JSON)
                 .get();
@@ -85,29 +93,19 @@ public class RestBlobsClient  extends RestClient implements Blobs {
 
     @Override
     public Result<Void> deleteBlob(String blobId) {
+        return super.reTry( () -> clt_deleteBlob(blobId));
+    }
+
+    private Result<Void> clt_deleteBlob(String blobId) {
         Response r = target
                 .path(blobId)
                 .request()
                 .delete();
 
         var status = r.getStatus();
-        if (status != Status.OK.getStatusCode())
+        if (status != Status.NO_CONTENT.getStatusCode())
             return Result.error(getErrorCodeFrom(status));
         else
-            return Result.ok(r.readEntity(Void.class));
-    }
-
-
-    public static Result.ErrorCode getErrorCodeFrom(int status) {
-        return switch (status) {
-            case 200, 209 -> Result.ErrorCode.OK;
-            case 409 -> Result.ErrorCode.CONFLICT;
-            case 403 -> Result.ErrorCode.FORBIDDEN;
-            case 404 -> Result.ErrorCode.NOT_FOUND;
-            case 400 -> Result.ErrorCode.BAD_REQUEST;
-            case 500 -> Result.ErrorCode.INTERNAL_ERROR;
-            case 501 -> Result.ErrorCode.NOT_IMPLEMENTED;
-            default -> Result.ErrorCode.INTERNAL_ERROR;
-        };
+            return Result.ok();
     }
 }

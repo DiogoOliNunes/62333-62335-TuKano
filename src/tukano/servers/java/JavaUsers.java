@@ -4,6 +4,7 @@ import Discovery.Discovery;
 import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Users;
+import tukano.clients.factories.ShortsClientFactory;
 import tukano.clients.rest.RestShortsClient;
 import tukano.persistence.Hibernate;
 
@@ -16,13 +17,11 @@ public class JavaUsers implements Users {
     private static Logger Log = Logger.getLogger(JavaUsers.class.getName());
 
     Hibernate datastore;
-    RestShortsClient shortsClient;
     URI[] shortURI;
 
     public JavaUsers() {
         datastore = Hibernate.getInstance();
         shortURI = Discovery.getInstance().knownUrisOf("shorts",1);
-        shortsClient = new RestShortsClient(shortURI[0]);
     }
 
     @Override
@@ -106,11 +105,11 @@ public class JavaUsers implements Users {
         if (!result.isOK())
             return result;
 
-        List<String> userShorts = shortsClient.getShorts(userId).value();
-        userShorts.forEach(userShort -> shortsClient.deleteShort(userShort, pwd));
+        List<String> userShorts = ShortsClientFactory.getClient(shortURI[0]).getShorts(userId).value();
+        userShorts.forEach(userShort -> ShortsClientFactory.getClient(shortURI[0]).deleteShort(userShort, pwd));
 
-        shortsClient.deleteFollowers(userId);
-        shortsClient.deleteLikes(userId);
+        ShortsClientFactory.getClient(shortURI[0]).deleteFollowers(userId);
+        ShortsClientFactory.getClient(shortURI[0]).deleteLikes(userId);
 
         User userToBeRemoved = result.value();
         datastore.delete(userToBeRemoved);

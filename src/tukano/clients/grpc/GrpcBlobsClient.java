@@ -29,12 +29,6 @@ public class GrpcBlobsClient extends GrpcClient implements Blobs {
 
     @Override
     public Result<Void> deleteBlob(String blobId) {
-        return null;
-    }
-
-    /*
-    @Override
-    public Result<Void> deleteBlob(String blobId) {
         return toJavaResult(() -> {
             var res = stub.deleteBlob(BlobsProtoBuf.DeleteBlobArgs.newBuilder()
                     .setBlobId(blobId)
@@ -42,5 +36,4 @@ public class GrpcBlobsClient extends GrpcClient implements Blobs {
             return null;
         });
     }
-     */
 }

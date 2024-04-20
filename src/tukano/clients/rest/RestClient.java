@@ -35,4 +35,17 @@ public class RestClient {
             r.close();
         }
     }
+
+    public static Result.ErrorCode getErrorCodeFrom(int status) {
+        return switch (status) {
+            case 200, 209 -> Result.ErrorCode.OK;
+            case 409 -> Result.ErrorCode.CONFLICT;
+            case 403 -> Result.ErrorCode.FORBIDDEN;
+            case 404 -> Result.ErrorCode.NOT_FOUND;
+            case 400 -> Result.ErrorCode.BAD_REQUEST;
+            case 500 -> Result.ErrorCode.INTERNAL_ERROR;
+            case 501 -> Result.ErrorCode.NOT_IMPLEMENTED;
+            default -> Result.ErrorCode.INTERNAL_ERROR;
+        };
+    }
 }

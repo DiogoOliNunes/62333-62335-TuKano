@@ -8,6 +8,8 @@ import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Shorts;
 
+import tukano.clients.factories.BlobsClientFactory;
+import tukano.clients.factories.UsersClientFactory;
 import tukano.clients.rest.RestBlobsClient;
 import tukano.clients.rest.RestUsersClient;
 import tukano.persistence.Hibernate;
@@ -21,8 +23,6 @@ public class JavaShorts implements Shorts {
     private static Logger Log = Logger.getLogger(JavaShorts.class.getName());
 
     Hibernate datastore;
-    RestUsersClient userClient;
-    RestBlobsClient blobClient;
     URI[] userURI;
     URI[] blobURI;
 
@@ -30,11 +30,9 @@ public class JavaShorts implements Shorts {
         datastore = Hibernate.getInstance();
         userURI = Discovery.getInstance().knownUrisOf("users",1);
         blobURI = Discovery.getInstance().knownUrisOf("blobs",1);
-        userClient = new RestUsersClient(userURI[0]);
-        blobClient = new RestBlobsClient(blobURI[0]);
     }
     private Result<User> getUser(String userId) {
-        List<User> result = userClient.searchUsers(userId).value();
+        List<User> result = UsersClientFactory.getClient(userURI[0]).searchUsers(userId).value();
         if (result.isEmpty())
             return Result.error(Result.ErrorCode.NOT_FOUND);
 
@@ -50,7 +48,7 @@ public class JavaShorts implements Shorts {
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
 
-        Result<User> result = userClient.getUser(userId, password);
+        Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
 
@@ -64,22 +62,27 @@ public class JavaShorts implements Shorts {
     public Result<Void> deleteShort(String shortId, String password) {
         Log.info("delete short: short = " + shortId + "; pwd = " + password);
 
-        Short shortToBeDeleted = getShort(shortId).value();
-        Result<User> result = userClient.getUser(shortToBeDeleted.getOwnerId(), password);
+        Result<Short> shortToBeDeleted = getShort(shortId);
+        if (!shortToBeDeleted.isOK()) return Result.error(shortToBeDeleted.error());
+        Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(shortToBeDeleted.value().getOwnerId(), password);
         if (!result.isOK())
             return Result.error(result.error());
 
-        datastore.delete(shortToBeDeleted);
+        datastore.delete(shortToBeDeleted.value());
 
         List<LikeShort> shortLikes = datastore.sql("SELECT * FROM LikeShort l WHERE l.shortLiked LIKE '"
                 + shortId + "'", LikeShort.class);
+
         shortLikes.forEach(like -> datastore.delete(like));
+        Log.info("palalolico: " + getRightServer(blobURI, shortToBeDeleted.value()));
 
-        blobClient = new RestBlobsClient(getRightServer(blobURI, shortToBeDeleted));
-        Result<Void> resultBlob = blobClient.deleteBlob(shortId);
+        Result<Void> resultBlob = BlobsClientFactory.getClient(getRightServer(blobURI, shortToBeDeleted.value())).deleteBlob(shortId);
 
-        if (!resultBlob.isOK())
+        if (!resultBlob.isOK()) {
+            Log.info("se estás a ler isto - parabens encontras te o erro seu cao derramado");
             return Result.error(resultBlob.error());
+        }
+        Log.info("está a finalizar");
 
         return Result.ok();
     }
@@ -115,7 +118,7 @@ public class JavaShorts implements Shorts {
             Log.info("Arguments invalid.");
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
-        Result<User> result1 = userClient.getUser(userId1, password);
+        Result<User> result1 = UsersClientFactory.getClient(userURI[0]).getUser(userId1, password);
         Result<User> result2 = getUser(userId2);
         if (!result1.isOK())
             return Result.error(result1.error());
@@ -144,7 +147,7 @@ public class JavaShorts implements Shorts {
     public Result<List<String>> followers(String userId, String password) {
         Log.info("followers : user = " + userId);
 
-        Result<User> result = userClient.getUser(userId, password);
+        Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
 
@@ -167,7 +170,7 @@ public class JavaShorts implements Shorts {
     private Result<List<String>> following(String userId, String password) {
         Log.info("following : user = " + userId);
 
-        Result<User> result = userClient.getUser(userId, password);
+        Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(userId, password);
         if (!result.isOK())
             return Result.error(result.error());
 
@@ -230,7 +233,7 @@ public class JavaShorts implements Shorts {
             Log.info("Short does not exist.");
             return Result.error(Result.ErrorCode.NOT_FOUND);
         }
-        Result<User> ownerResult = userClient.getUser(shortResult.value().getOwnerId(), password);
+        Result<User> ownerResult = UsersClientFactory.getClient(userURI[0]).getUser(shortResult.value().getOwnerId(), password);
         if (!ownerResult.isOK()) {
             Log.info("Password is incorrect.");
             return Result.error( Result.ErrorCode.FORBIDDEN);
@@ -280,6 +283,10 @@ public class JavaShorts implements Shorts {
 
     public URI getServer(URI[] URIs) {
         Log.info("Getting the best server...");
+        if (URIs.length == 0) {
+            Log.info("Realmente és tao esperto ");
+            return null;
+        }
         return Arrays.stream(URIs).min(Comparator.comparing(this::getBlobSize)).orElse(null);
     }
 
@@ -294,6 +301,17 @@ public class JavaShorts implements Shorts {
         Log.info("Getting the right server of short " + shortEliminated.getShortId());
 
         URI rightURI = null;
+
+        if (URIs == null) {
+            Log.info("KELK KELK KELK KELK KELK KELK KELK");
+        }
+
+        Log.info("Realmente és tao esperto tamanho: " + URIs.length);
+
+        if (URIs.length == 0) {
+            Log.info("coise coise");
+            return null;
+        }
 
         if (shortEliminated != null) {
             for (int i = 0; i < URIs.length; i++) {

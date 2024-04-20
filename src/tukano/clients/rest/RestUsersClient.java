@@ -3,6 +3,7 @@ package tukano.clients.rest;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
+import tukano.api.Short;
 import tukano.api.User;
 import tukano.api.java.Result;
 import tukano.api.java.Users;
@@ -56,6 +57,10 @@ public class RestUsersClient extends RestClient implements Users {
 
     @Override
     public Result<String> createUser(User user) {
+        return super.reTry( () -> clt_createUser(user));
+    }
+
+    private Result<String> clt_createUser(User user) {
 
         for(int i = 0; i < MAX_RETRIES ; i++) {
             try {
@@ -83,6 +88,10 @@ public class RestUsersClient extends RestClient implements Users {
 
     @Override
     public Result<User> getUser(String userId, String pwd) {
+        return super.reTry( () -> clt_getUser(userId, pwd));
+    }
+
+    private Result<User> clt_getUser(String userId, String pwd) {
         Response r = target.path( userId )
                 .queryParam(RestUsers.PWD, pwd).request()
                 .accept(MediaType.APPLICATION_JSON)
@@ -97,6 +106,10 @@ public class RestUsersClient extends RestClient implements Users {
 
     @Override
     public Result<User> updateUser(String userId, String password, User user) {
+        return super.reTry( () -> clt_updateUser(userId, password, user));
+    }
+
+    public Result<User> clt_updateUser(String userId, String password, User user) {
         Response r = target.path( userId )
                 .queryParam(RestUsers.PWD, password).request()
                 .put(Entity.entity(user, MediaType.APPLICATION_JSON));
@@ -110,6 +123,10 @@ public class RestUsersClient extends RestClient implements Users {
 
     @Override
     public Result<User> deleteUser(String userId, String password) {
+        return super.reTry( () -> clt_deleteUser(userId, password));
+    }
+
+    private Result<User> clt_deleteUser(String userId, String password) {
         Response r = target.path( userId )
                 .queryParam(RestUsers.PWD, password).request()
                 .delete();
@@ -123,6 +140,10 @@ public class RestUsersClient extends RestClient implements Users {
 
     @Override
     public Result<List<User>> searchUsers(String pattern) {
+        return super.reTry( () -> clt_searchUsers(pattern));
+    }
+
+    private Result<List<User>> clt_searchUsers(String pattern) {
         Response r = target.queryParam(RestUsers.QUERY, pattern)
                 .request()
                 .get();
@@ -133,18 +154,4 @@ public class RestUsersClient extends RestClient implements Users {
         else
             return Result.ok( r.readEntity( new GenericType<List<User>>() {}));
     }
-
-    public static Result.ErrorCode getErrorCodeFrom(int status) {
-        return switch (status) {
-            case 200, 209 -> Result.ErrorCode.OK;
-            case 409 -> Result.ErrorCode.CONFLICT;
-            case 403 -> Result.ErrorCode.FORBIDDEN;
-            case 404 -> Result.ErrorCode.NOT_FOUND;
-            case 400 -> Result.ErrorCode.BAD_REQUEST;
-            case 500 -> Result.ErrorCode.INTERNAL_ERROR;
-            case 501 -> Result.ErrorCode.NOT_IMPLEMENTED;
-            default -> Result.ErrorCode.INTERNAL_ERROR;
-        };
-    }
-
 }

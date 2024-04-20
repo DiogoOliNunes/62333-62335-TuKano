@@ -24,6 +24,5 @@ public interface RestBlobs {
 
 	 @DELETE
 	 @Path("{" + BLOB_ID + "}")
-	 @Consumes(MediaType.APPLICATION_OCTET_STREAM)
 	 void deleteBlob(@PathParam(BLOB_ID) String blobId);
 }

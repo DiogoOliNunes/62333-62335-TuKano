@@ -3,7 +3,7 @@ package tukano.servers.java;
 import Discovery.Discovery;
 import tukano.api.java.Blobs;
 import tukano.api.java.Result;
-import tukano.clients.rest.RestShortsClient;
+import tukano.clients.factories.ShortsClientFactory;
 import tukano.persistence.Hibernate;
 
 import java.io.IOException;
@@ -19,14 +19,12 @@ public class JavaBlobs implements Blobs {
 
     private static final String BLOB_COLLECTION = "./blobs/";// blob collection, blob media center?
     Hibernate datastore;
-    RestShortsClient client;
     URI[] uri;
     public JavaBlobs() {
         createBlobsDirectory();
 
         datastore = Hibernate.getInstance();
         uri = Discovery.getInstance().knownUrisOf("shorts",1);
-        client = new RestShortsClient(uri[0]);
     }
 
     private void createBlobsDirectory() {
@@ -41,7 +39,7 @@ public class JavaBlobs implements Blobs {
     public Result<Void> upload(String blobId, byte[] bytes) {
         Log.info("Upload of blob: " + blobId);
 
-        if (!client.getShort(blobId).value().getShortId().equals(blobId)) {
+        if (!ShortsClientFactory.getClient(uri[0]).getShort(blobId).value().getShortId().equals(blobId)) {
             Log.info("Blob ID invalid.");
 
 
@@ -95,14 +93,17 @@ public class JavaBlobs implements Blobs {
 
         try {
             Path blobPath = Path.of(BLOB_COLLECTION, blobId);
-            if (!Files.exists(blobPath))
+            Log.info("aqui está o kelk: " + blobPath);
+            if (!ShortsClientFactory.getClient(uri[0]).getShort(blobId).isOK()) {
+                Log.info("encontraste o erro boua");
                 return Result.error(Result.ErrorCode.NOT_FOUND);
+            }
             Log.info("O ficheiro existe antes do delete? -> " + Files.exists(blobPath));
-            Files.delete(blobPath);
+            //Files.deleteIfExists
+            if (Files.exists(blobPath)) Files.delete(blobPath);
             Log.info("O ficheiro existe depois do delete? -> " + Files.exists(blobPath));
             return Result.ok();
         } catch (IOException e) {
-            Log.info("Está a entrar aqui");
             e.printStackTrace();
             return Result.error(Result.ErrorCode.INTERNAL_ERROR);
         }

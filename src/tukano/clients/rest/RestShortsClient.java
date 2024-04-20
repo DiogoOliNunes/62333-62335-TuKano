@@ -50,6 +50,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<Short> createShort(String userId, String password) {
+        return super.reTry( () -> clt_createShort(userId, password));
+    }
+
+    private Result<Short> clt_createShort(String userId, String password) { //todo: isto esta mal
         for (int i = 0; i < MAX_RETRIES; i++) {
             try {
                 Response r = target.request()
@@ -73,6 +77,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<Short> getShort(String shortId) {
+        return super.reTry( () -> clt_getShort(shortId));
+    }
+
+    private Result<Short> clt_getShort(String shortId) {
         Response r = target.path(shortId)
                 .request()
                 .accept(MediaType.APPLICATION_JSON)
@@ -87,6 +95,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<Void> deleteShort(String shortId, String password) {
+        return super.reTry( () -> clt_deleteShort(shortId, password));
+    }
+
+    private Result<Void> clt_deleteShort(String shortId, String password) {
         Response r = target.path(shortId)
                 .queryParam(RestUsers.PWD, password)
                 .request()
@@ -101,6 +113,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<List<String>> getShorts(String userId) {
+        return super.reTry( () -> clt_getShorts(userId));
+    }
+
+    private Result<List<String>> clt_getShorts(String userId) {
         try {
             Response response = target
                     .path(userId)
@@ -124,6 +140,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<Void> follow(String userId1, String userId2, boolean isFollowing, String password) {
+        return super.reTry( () -> clt_follow(userId1, userId2, isFollowing, password));
+    }
+
+    private Result<Void> clt_follow(String userId1, String userId2, boolean isFollowing, String password) {
         String action = isFollowing ? "follow" : "unfollow";
         Response response = target
                 .path(userId1)
@@ -143,6 +163,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<List<String>> followers(String userId, String password) {
+        return super.reTry( () -> clt_followers(userId, password));
+    }
+
+    private Result<List<String>> clt_followers(String userId, String password) {
         Response response = target
                 .path(userId)
                 .queryParam("password", password)
@@ -158,9 +182,12 @@ public class RestShortsClient extends RestClient implements Shorts {
         }
     }
 
-
     @Override
     public Result<Void> like(String shortId, String userId, boolean isLiked, String password) {
+        return super.reTry( () -> clt_like(shortId, userId, isLiked, password));
+    }
+
+    private Result<Void> clt_like(String shortId, String userId, boolean isLiked, String password) {
         Response response = target
                 .path(shortId)
                 .queryParam("userId", userId)
@@ -179,6 +206,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<List<String>> likes(String shortId, String password) {
+        return super.reTry( () -> clt_like(shortId, password));
+    }
+
+    private Result<List<String>> clt_like(String shortId, String password) {
         Response response = target
                 .path(shortId)
                 .queryParam("password", password)
@@ -196,6 +227,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<Void> deleteLikes(String userId) {
+        return super.reTry( () -> clt_deleteLikes(userId));
+    }
+
+    private Result<Void> clt_deleteLikes(String userId) {
         Response r = target.path(userId)
                 .path(RestShorts.DELETING)
                 .request()
@@ -211,6 +246,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<Void> deleteFollowers(String userId) {
+        return super.reTry( () -> clt_deleteFollowers(userId));
+    }
+
+    private Result<Void> clt_deleteFollowers(String userId) {
         Response r = target.path(userId)
                 .path(RestShorts.DELETE_FOLLOWERS)
                 .request()
@@ -226,6 +265,10 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     @Override
     public Result<List<String>> getFeed(String userId, String password) {
+        return super.reTry( () -> clt_getFeed(userId, password));
+    }
+
+    private Result<List<String>> clt_getFeed(String userId, String password) {
         Response response = target
                 .path("feed")
                 .queryParam("userId", userId)
@@ -240,18 +283,5 @@ public class RestShortsClient extends RestClient implements Shorts {
         } else {
             return Result.error(getErrorCodeFrom(status));
         }
-    }
-
-    public static Result.ErrorCode getErrorCodeFrom(int status) {
-        return switch (status) {
-            case 200, 209 -> Result.ErrorCode.OK;
-            case 409 -> Result.ErrorCode.CONFLICT;
-            case 403 -> Result.ErrorCode.FORBIDDEN;
-            case 404 -> Result.ErrorCode.NOT_FOUND;
-            case 400 -> Result.ErrorCode.BAD_REQUEST;
-            case 500 -> Result.ErrorCode.INTERNAL_ERROR;
-            case 501 -> Result.ErrorCode.NOT_IMPLEMENTED;
-            default -> Result.ErrorCode.INTERNAL_ERROR;
-        };
     }
 }
