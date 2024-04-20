@@ -1,0 +1,20 @@
+
+E
+java:S1481+"(Remove this unused "res" local variable.(ñÓ–É8Àò®Ğï1
+D
+java:S1481J"(Remove this unused "res" local variable.(ÿåúq8Ãò®Ğï1
+J
+java:S1481b"(Remove this unused "res" local variable.(ıô¯éÿÿÿÿÿ8Çò®Ğï1
+F
+java:S1481…"(Remove this unused "res" local variable.(¶¸›8Íò®Ğï1
+F
+java:S1481"(Remove this unused "res" local variable.(õÛó8Ïò®Ğï1
+c
+java:S1128	"FRemove this unused import 'tukano.impl.grpc.generated_java.UsersGrpc'.(´ô‘»8Ïò®Ğï1
+l
+java:S1128
+"JRemove this unused import 'tukano.impl.grpc.generated_java.UsersProtoBuf'.(‚‚€åøÿÿÿÿ8Ïò®Ğï1
+W
+java:S1128":Remove this unused import 'java.util.concurrent.TimeUnit'.(Æ™ş8Ïò®Ğï1
+a
+java:S1128"DRemove this unused import 'utils.DataModelAdaptor.User_to_GrpcUser'.(Ğ˜ÒÁ8Ğò®Ğï1

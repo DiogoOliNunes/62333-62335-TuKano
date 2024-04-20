@@ -1,0 +1,679 @@
+
+u
+java:S2293…"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñöé¼şÿÿÿÿ
+u
+java:S2293¢$"YReplace the type specification in this constructor call with the diamond operator ("<>").(ñöé¼şÿÿÿÿ
+`
+java:S1192t"IDefine a constant instead of duplicating this literal "Password" 7 times.(°ì´“
+^
+java:S1192t"GDefine a constant instead of duplicating this literal "UserId" 9 times.(°ì´“
+_
+java:S1192—t"HDefine a constant instead of duplicating this literal "ShortId" 7 times.(î…í
+F
+java:S1066Œ"/Merge this if statement with the enclosing one.(•ÛÓ“
+F
+java:S1066©!"/Merge this if statement with the enclosing one.(•ÛÓ“
+g	java:S117Û)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
+g	java:S117š,"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
+g	java:S117ü>"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
+g	java:S117»A"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
+g	java:S117û["QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
+g	java:S117º^"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
+g	java:S117©n"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
+g	java:S117èp"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
+b
+java:S1301À"KReplace this "switch" statement by "if" statements to increase readability.(¹ŠÒÓ
+b
+java:S1301ô5"KReplace this "switch" statement by "if" statements to increase readability.(¹ŠÒÓ
+b
+java:S1301¢H"KReplace this "switch" statement by "if" statements to increase readability.(¹ŠÒÓ
+b
+java:S1301óR"KReplace this "switch" statement by "if" statements to increase readability.(¹ŠÒÓ
+b
+java:S1301¡e"KReplace this "switch" statement by "if" statements to increase readability.(¹ŠÒÓ
+u
+java:S1488ı"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488ê
+"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488ú"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488©"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488ó"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488Ú"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488—""_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488ƒ'"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488Õ+"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488å1"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488§7"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488Ñ;"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488ö@"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488ŞE"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488ÕI"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488äN"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488¦T"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488ĞX"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488õ]"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488İb"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488Ôf"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488şj"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488£p"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+I
+java:S1199Ñ*"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199ò?"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199ñ\"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+I
+java:S1199Ÿo"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+œ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ƒ°‡ıÿÿÿÿ
+J
+java:S1172	"/Remove this unused method parameter "registry".(•óÊõÿÿÿÿÿ
+i	java:S116´"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÓºÒ
+i	java:S116Ú"SRename this field "ownerId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê¢×Ú
+i	java:S116€"SRename this field "blobUrl_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥”¥Ä
+k	java:S116¦"URename this field "timestamp_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¿º†
+l	java:S116±"VRename this field "totalLikes_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍÑå£
+
+java:S4144ş"cUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 997.(ÊÚËûÿÿÿÿ
+n
+java:S3077´"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(ÕÓºÒ
+n
+java:S3077Ú"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(Ê¢×Ú
+n
+java:S3077€"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(¥”¥Ä
+b
+java:S6201¼"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201Î"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201â"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ô"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ˆ"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201š"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126‹"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+n	java:S116®"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë„¤Èşÿÿÿÿ
+n	java:S116ú"SRename this field "ownerId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù±æ®úÿÿÿÿ
+i	java:S116Æ"SRename this field "blobUrl_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆÀ•¶
+k	java:S116’"URename this field "timestamp_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¿º†
+l	java:S116±"VRename this field "totalLikes_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍÑå£
+?	java:S108 ")Either remove or fill this block of code.(º„ç½
+o
+java:S2975Ô"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+h
+java:S6201õ"LReplace this instanceof check and cast with 'instanceof GrpcShort grpcshort'(ÎÆø¤úÿÿÿÿ
+b
+java:S6201µ"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201Æ"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201’"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201Í"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201Ş"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+m	java:S116ş"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´û’ùûÿÿÿÿ
+o	java:S116¤	"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¤’ûÿÿÿÿ
+€
+java:S4144Î"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 1717.(ôº×Ùÿÿÿÿÿ
+s
+java:S3077ş"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(´û’ùûÿÿÿÿ
+s
+java:S3077¤	"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(–¤’ûÿÿÿÿ
+b
+java:S6201†	"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201˜	"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201¬	"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201¾	"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126ÿ	"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116ˆ"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÄŞÍÿÿÿÿÿ
+o	java:S116Ô"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉíËüÿÿÿÿ
+?	java:S108")Either remove or fill this block of code.(º„ç½
+o
+java:S2975¸"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+t
+java:S6201Ù"XReplace this instanceof check and cast with 'instanceof CreateShortArgs createshortargs'(Á÷ŞÁúÿÿÿÿ
+b
+java:S6201"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201 "FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201Û"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201ì"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+l	java:S116Ä"QRename this field "value_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œşŞúüÿÿÿÿ
+{
+java:S4144½"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 2340.(‘‹
+]
+java:S1126"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+l	java:S116˜"QRename this field "value_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œşŞúüÿÿÿÿ
+s	java:S116š"XRename this field "valueBuilder_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ø§Šûüÿÿÿÿ
+?	java:S108")Either remove or fill this block of code.(º„ç½
+o
+java:S2975Í"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+s
+java:S6201î"\Replace this instanceof check and cast with 'instanceof CreateShortResult createshortresult'(èûàÉ
+i	java:S116½"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÓºÒ
+o	java:S116ã"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¤’ûÿÿÿÿ
+{
+java:S4144"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 3060.(¡Ğ—˜
+n
+java:S3077½"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(ÕÓºÒ
+s
+java:S3077ã"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(–¤’ûÿÿÿÿ
+b
+java:S6201Å"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201×"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ë"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ı"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126¾"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+n	java:S116Ç"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë„¤Èşÿÿÿÿ
+o	java:S116“"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉíËüÿÿÿÿ
+?	java:S108Ì")Either remove or fill this block of code.(º„ç½
+o
+java:S2975÷"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+n
+java:S6201˜"XReplace this instanceof check and cast with 'instanceof DeleteShortArgs deleteshortargs'(¥©ÄO
+b
+java:S6201Î"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201ß"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201š"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201«"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+{
+java:S4144±"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 3480.(“ÈóØ
+]
+java:S1126Œ"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+?	java:S108–")Either remove or fill this block of code.(º„ç½
+o
+java:S2975»"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+x
+java:S6201Ü"\Replace this instanceof check and cast with 'instanceof DeleteShortResult deleteshortresult'(Ç¶Äúÿÿÿÿ
+i	java:S116"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÓºÒ
+€
+java:S4144ë"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 4050.(Öøª«ûÿÿÿÿ
+n
+java:S3077"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(ÕÓºÒ
+b
+java:S6201¦"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201¸"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126ñ"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+n	java:S116ñ"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë„¤Èşÿÿÿÿ
+?	java:S108ı")Either remove or fill this block of code.(º„ç½
+o
+java:S2975¥"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+n
+java:S6201Æ"RReplace this instanceof check and cast with 'instanceof GetShortArgs getshortargs'(¾¤¸Ùúÿÿÿÿ
+b
+java:S6201ø"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201‰"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+l	java:S116á "QRename this field "value_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œşŞúüÿÿÿÿ
+{
+java:S4144Ú$"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 4673.(ñ½ò‰
+]
+java:S1126¬!"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+l	java:S116µ#"QRename this field "value_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œşŞúüÿÿÿÿ
+s	java:S116·#"XRename this field "valueBuilder_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ø§Šûüÿÿÿÿ
+?	java:S108º"")Either remove or fill this block of code.(º„ç½
+o
+java:S2975ê""SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+m
+java:S6201‹#"VReplace this instanceof check and cast with 'instanceof GetShortResult getshortresult'(ñé¡«
+m	java:S116Ç%"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´û’ùûÿÿÿÿ
+€
+java:S4144”)"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 5243.(—¶û†øÿÿÿÿ
+s
+java:S3077Ç%"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(´û’ùûÿÿÿÿ
+b
+java:S6201Ï%"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201á%"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126š&"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116š("RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÄŞÍÿÿÿÿÿ
+?	java:S108¦'")Either remove or fill this block of code.(º„ç½
+o
+java:S2975Î'"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+k
+java:S6201ï'"TReplace this instanceof check and cast with 'instanceof GetShortsArgs getshortsargs'(‡‰‡¢
+b
+java:S6201¡("FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201²("FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+i	java:S116•*"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ»‹®
+z
+java:S4144”."dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 5883.(Œêæ5
+D
+java:S1874Ä)"-Remove this use of "EMPTY"; it is deprecated.(îÈ¼è
+E
+java:S1940è)")Use the opposite operator ("==") instead.(«‹¦œøÿÿÿÿ
+]
+java:S1126ê*"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+k	java:S116ö,"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
+i	java:S116ø,"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ì÷ß
+?	java:S108ø+")Either remove or fill this block of code.(º„ç½
+D
+java:S1874ş+"-Remove this use of "EMPTY"; it is deprecated.(îÈ¼è
+Z
+java:S1854š,"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
+K
+java:S1481š,"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
+o
+java:S2975¥,"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+n
+java:S6201Æ,"XReplace this instanceof check and cast with 'instanceof GetShortsResult getshortsresult'(Ÿûë7
+D
+java:S1874ø,"-Remove this use of "EMPTY"; it is deprecated.(¼ì÷ß
+@
+java:S1940ú,")Use the opposite operator ("==") instead.(¦ÁÕ“
+D
+java:S1874Ğ-"-Remove this use of "EMPTY"; it is deprecated.(îÈ¼è
+n	java:S116²/"SRename this field "userId1_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ´­¢ùÿÿÿÿ
+i	java:S116Ø/"SRename this field "userId2_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ°Õ
+m	java:S116ş/"WRename this field "isFollowing_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıõæ¬
+o	java:S116‰0"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¤’ûÿÿÿÿ
+€
+java:S4144Á5"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 6824.(ûÓÚçüÿÿÿÿ
+s
+java:S3077²/"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(æ´­¢ùÿÿÿÿ
+n
+java:S3077Ø/"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(Ÿ°Õ
+s
+java:S3077‰0"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(–¤’ûÿÿÿÿ
+b
+java:S6201º/"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201Ì/"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201à/"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ò/"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201‘0"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201£0"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+>
+java:S1125Â0"'Remove the unnecessary boolean literal.(­ŠÇ¨
+>
+java:S1125×0"'Remove the unnecessary boolean literal.(­ŠÇ¨
+]
+java:S1126õ0"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+n	java:S1163"SRename this field "userId1_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯ï®úÿÿÿÿ
+i	java:S116Ü3"SRename this field "userId2_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î“Î¨
+m	java:S116¨4"WRename this field "isFollowing_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıõæ¬
+o	java:S116Ç4"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉíËüÿÿÿÿ
+?	java:S108ˆ2")Either remove or fill this block of code.(º„ç½
+o
+java:S2975¹2"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+j
+java:S6201Ú2"NReplace this instanceof check and cast with 'instanceof FollowArgs followargs'(ı™Ñ‡úÿÿÿÿ
+>
+java:S1125ì2"'Remove the unnecessary boolean literal.(¢û¯ú
+b
+java:S6201—3"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201¨3"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201ã3"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201ô3"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201Î4"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201ß4"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+€
+java:S4144å8"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 7244.(¢ŠÛŠÿÿÿÿÿ
+]
+java:S1126À6"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+?	java:S108Ê7")Either remove or fill this block of code.(º„ç½
+o
+java:S2975ï7"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+i
+java:S62018"RReplace this instanceof check and cast with 'instanceof FollowResult followresult'(Š¡‘
+m	java:S116å9"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´û’ùûÿÿÿÿ
+o	java:S116‹:"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¤’ûÿÿÿÿ
+€
+java:S4144µ>"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 7964.(í¨‡Øøÿÿÿÿ
+s
+java:S3077å9"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(´û’ùûÿÿÿÿ
+s
+java:S3077‹:"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(–¤’ûÿÿÿÿ
+b
+java:S6201í9"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ÿ9"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201“:"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201¥:"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126æ:"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116ï<"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÄŞÍÿÿÿÿÿ
+o	java:S116»="TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉíËüÿÿÿÿ
+?	java:S108ô;")Either remove or fill this block of code.(º„ç½
+o
+java:S2975Ÿ<"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+p
+java:S6201À<"TReplace this instanceof check and cast with 'instanceof FollowersArgs followersargs'(–íÁÏüÿÿÿÿ
+b
+java:S6201ö<"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201‡="FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201Â="FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201Ó="FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+m	java:S116¶?"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áëûçøÿÿÿÿ
+{
+java:S4144µC"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 8604.(ù…„‰
+D
+java:S1874å>"-Remove this use of "EMPTY"; it is deprecated.(ö…ó‘
+E
+java:S1940‰?")Use the opposite operator ("==") instead.(«‹¦œøÿÿÿÿ
+]
+java:S1126‹@"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+k	java:S116—B"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
+m	java:S116™B"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·—°‹şÿÿÿÿ
+?	java:S108™A")Either remove or fill this block of code.(º„ç½
+D
+java:S1874ŸA"-Remove this use of "EMPTY"; it is deprecated.(ö…ó‘
+Z
+java:S1854»A"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
+K
+java:S1481»A"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
+o
+java:S2975ÆA"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+o
+java:S6201çA"XReplace this instanceof check and cast with 'instanceof FollowersResult followersresult'(ÑÕı‡
+I
+java:S1874™B"-Remove this use of "EMPTY"; it is deprecated.(·—°‹şÿÿÿÿ
+@
+java:S1940›B")Use the opposite operator ("==") instead.(¦ÁÕ“
+D
+java:S1874ñB"-Remove this use of "EMPTY"; it is deprecated.(ö…ó‘
+m	java:S116¢D"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´û’ùûÿÿÿÿ
+€
+java:S4144ïG"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 9174.(œíÖõúÿÿÿÿ
+s
+java:S3077¢D"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(´û’ùûÿÿÿÿ
+b
+java:S6201ªD"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201¼D"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126õD"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116õF"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÄŞÍÿÿÿÿÿ
+?	java:S108F")Either remove or fill this block of code.(º„ç½
+o
+java:S2975©F"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+w
+java:S6201ÊF"`Replace this instanceof check and cast with 'instanceof DeleteFollowersArgs deletefollowersargs'(šğç“
+b
+java:S6201üF"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201G"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+{
+java:S4144“K"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 9594.(Êş×
+]
+java:S1126îH"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+?	java:S108øI")Either remove or fill this block of code.(º„ç½
+o
+java:S2975J"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+€
+java:S6201¾J"dReplace this instanceof check and cast with 'instanceof DeleteFollowersResult deletefollowersresult'(£ÙÔòùÿÿÿÿ
+i	java:S116±L"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÓºÒ
+m	java:S116×L"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´û’ùûÿÿÿÿ
+n	java:S116ıL"SRename this field "isLiked_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­˜ÿ¤ûÿÿÿÿ
+o	java:S116ˆM"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¤’ûÿÿÿÿ
+
+java:S4144ÀR"eUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 10535.(íó¥¨øÿÿÿÿ
+n
+java:S3077±L"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(ÕÓºÒ
+s
+java:S3077×L"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(´û’ùûÿÿÿÿ
+s
+java:S3077ˆM"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(–¤’ûÿÿÿÿ
+b
+java:S6201¹L"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ËL"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ßL"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201ñL"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201M"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201¢M"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+C
+java:S1125ÁM"'Remove the unnecessary boolean literal.(¿û£øúÿÿÿÿ
+C
+java:S1125ÖM"'Remove the unnecessary boolean literal.(¿û£øúÿÿÿÿ
+]
+java:S1126ôM"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+n	java:S116P"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë„¤Èşÿÿÿÿ
+m	java:S116ÛP"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÄŞÍÿÿÿÿÿ
+n	java:S116§Q"SRename this field "isLiked_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­˜ÿ¤ûÿÿÿÿ
+o	java:S116ÆQ"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉíËüÿÿÿÿ
+?	java:S108‡O")Either remove or fill this block of code.(º„ç½
+o
+java:S2975¸O"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+a
+java:S6201ÙO"JReplace this instanceof check and cast with 'instanceof LikeArgs likeargs'(®¾¹Ú
+C
+java:S1125ëO"'Remove the unnecessary boolean literal.(†ßÕØúÿÿÿÿ
+b
+java:S6201–P"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201§P"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201âP"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201óP"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201ÍQ"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201ŞQ"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+
+java:S4144äU"eUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 10955.(œ“—Èúÿÿÿÿ
+]
+java:S1126¿S"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+?	java:S108ÉT")Either remove or fill this block of code.(º„ç½
+o
+java:S2975îT"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+e
+java:S6201U"NReplace this instanceof check and cast with 'instanceof LikeResult likeresult'(¸ªı
+i	java:S116äV"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÕÓºÒ
+o	java:S116ŠW"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¤’ûÿÿÿÿ
+
+java:S4144´["eUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 11675.(»Æñ²üÿÿÿÿ
+n
+java:S3077äV"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(ÕÓºÒ
+s
+java:S3077ŠW"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(–¤’ûÿÿÿÿ
+b
+java:S6201ìV"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201şV"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201’W"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201¤W"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126åW"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+n	java:S116îY"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë„¤Èşÿÿÿÿ
+o	java:S116ºZ"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉíËüÿÿÿÿ
+?	java:S108óX")Either remove or fill this block of code.(º„ç½
+o
+java:S2975Y"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+h
+java:S6201¿Y"LReplace this instanceof check and cast with 'instanceof LikesArgs likesargs'(¥Ø™ªøÿÿÿÿ
+b
+java:S6201õY"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201†Z"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201ÁZ"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201ÒZ"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+m	java:S116µ\"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áëûçøÿÿÿÿ
+
+java:S4144´`"eUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 12315.(Ü¢İñúÿÿÿÿ
+D
+java:S1874ä["-Remove this use of "EMPTY"; it is deprecated.(ö…ó‘
+E
+java:S1940ˆ\")Use the opposite operator ("==") instead.(«‹¦œøÿÿÿÿ
+]
+java:S1126Š]"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+k	java:S116–_"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
+m	java:S116˜_"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·—°‹şÿÿÿÿ
+?	java:S108˜^")Either remove or fill this block of code.(º„ç½
+D
+java:S1874^"-Remove this use of "EMPTY"; it is deprecated.(ö…ó‘
+Z
+java:S1854º^"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
+K
+java:S1481º^"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
+o
+java:S2975Å^"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+g
+java:S6201æ^"PReplace this instanceof check and cast with 'instanceof LikesResult likesresult'(ÄµôÍ
+I
+java:S1874˜_"-Remove this use of "EMPTY"; it is deprecated.(·—°‹şÿÿÿÿ
+@
+java:S1940š_")Use the opposite operator ("==") instead.(¦ÁÕ“
+D
+java:S1874ğ_"-Remove this use of "EMPTY"; it is deprecated.(ö…ó‘
+m	java:S116¡a"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´û’ùûÿÿÿÿ
+|
+java:S4144îd"eUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 12885.(õ›ˆ
+s
+java:S3077¡a"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(´û’ùûÿÿÿÿ
+b
+java:S6201©a"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201»a"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126ôa"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116ôc"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÄŞÍÿÿÿÿÿ
+?	java:S108€c")Either remove or fill this block of code.(º„ç½
+o
+java:S2975¨c"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+o
+java:S6201Éc"XReplace this instanceof check and cast with 'instanceof DeleteLikesArgs deletelikesargs'(€Ó¬“
+b
+java:S6201ûc"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201Œd"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+
+java:S4144’h"eUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 13305.(˜¹§ëüÿÿÿÿ
+]
+java:S1126íe"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+?	java:S108÷f")Either remove or fill this block of code.(º„ç½
+o
+java:S2975œg"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+x
+java:S6201½g"\Replace this instanceof check and cast with 'instanceof DeleteLikesResult deletelikesresult'(âó…°ûÿÿÿÿ
+m	java:S116’i"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´û’ùûÿÿÿÿ
+o	java:S116¸i"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¤’ûÿÿÿÿ
+
+java:S4144âm"eUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 14025.(æ›¹Ÿÿÿÿÿÿ
+s
+java:S3077’i"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(´û’ùûÿÿÿÿ
+s
+java:S3077¸i"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(–¤’ûÿÿÿÿ
+b
+java:S6201ši"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201¬i"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201Ài"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201Òi"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126“j"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116œl"RRename this field "userId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ÄŞÍÿÿÿÿÿ
+o	java:S116èl"TRename this field "password_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉíËüÿÿÿÿ
+?	java:S108¡k")Either remove or fill this block of code.(º„ç½
+o
+java:S2975Ìk"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+l
+java:S6201ík"PReplace this instanceof check and cast with 'instanceof GetFeedArgs getfeedargs'(àóìáüÿÿÿÿ
+b
+java:S6201£l"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201´l"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+b
+java:S6201ïl"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201€m"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+i	java:S116ãn"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(İ»‹®
+
+java:S4144âr"eUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 14665.(Ò¹¡ıúÿÿÿÿ
+D
+java:S1874’n"-Remove this use of "EMPTY"; it is deprecated.(îÈ¼è
+E
+java:S1940¶n")Use the opposite operator ("==") instead.(«‹¦œøÿÿÿÿ
+]
+java:S1126¸o"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+k	java:S116Äq"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
+i	java:S116Æq"SRename this field "shortId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ì÷ß
+?	java:S108Æp")Either remove or fill this block of code.(º„ç½
+D
+java:S1874Ìp"-Remove this use of "EMPTY"; it is deprecated.(îÈ¼è
+Z
+java:S1854èp"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
+K
+java:S1481èp"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
+o
+java:S2975óp"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+k
+java:S6201”q"TReplace this instanceof check and cast with 'instanceof GetFeedResult getfeedresult'(Ññ®¦
+D
+java:S1874Æq"-Remove this use of "EMPTY"; it is deprecated.(¼ì÷ß
+@
+java:S1940Èq")Use the opposite operator ("==") instead.(¦ÁÕ“
+D
+java:S1874r"-Remove this use of "EMPTY"; it is deprecated.(îÈ¼è
+N
+java:S6126äs"2Replace this String concatenation with Text block.(Êì…ÿüÿÿÿÿ

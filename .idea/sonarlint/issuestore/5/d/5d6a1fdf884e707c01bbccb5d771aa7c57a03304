@@ -1,0 +1,22 @@
+
+g
+java:S1192˜"IDefine a constant instead of duplicating this literal "password" 5 times.(®„Ù„8µîµÕï1
+k
+java:S3008"NRename this field "Log" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôæŠ8ÆğµÕï1
+j	java:S1008"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬èÂ¸8ÕğµÕï1
+X
+java:S11728";Remove these unused method parameters "userId", "password".(¬èÂ¸8×ğµÕï1
+O
+java:S11358"2Complete the task associated to this TODO comment.(¬èÂ¸8×ğµÕï1
+o	java:S100S"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú¯Œıÿÿÿÿ8ÙğµÕï1
+j	java:S100e"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ³’Ó8ÛğµÕï1
+i	java:S100w"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÌªz8ÜğµÕï1
+j	java:S100’"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡µÙ8ßğµÕï1
+p	java:S100©"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö¾“¢ıÿÿÿÿ8áğµÕï1
+p	java:S100¾"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆ…×ıÿÿÿÿ8ãğµÕï1
+p	java:S100Ô"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş…Åÿøÿÿÿÿ8åğµÕï1
+k	java:S100é"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Üášµ8çğµÕï1
+p	java:S100ü"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(é€šÿÿÿÿÿ8éğµÕï1
+p	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÚæ‘úÿÿÿÿ8ëğµÕï1
+X
+java:S1128";Remove this unused import 'java.net.MalformedURLException'.(ªËŞˆ8ìğµÕï1

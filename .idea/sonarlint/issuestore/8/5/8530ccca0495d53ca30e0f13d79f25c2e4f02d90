@@ -1,0 +1,121 @@
+
+c
+java:S1192û"GDefine a constant instead of duplicating this literal "BlobId" 3 times.(‹Â†Õûÿÿÿÿ
+b
+java:S1301Â"KReplace this "switch" statement by "if" statements to increase readability.(¹ŠÒÓ
+b
+java:S1301È"KReplace this "switch" statement by "if" statements to increase readability.(¹ŠÒÓ
+u
+java:S1488Ö"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488õ"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488Ü
+"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488õ"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488„"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+u
+java:S1488û"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+œ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ƒ°‡ıÿÿÿÿ
+J
+java:S1172	"/Remove this unused method parameter "registry".(•óÊõÿÿÿÿÿ
+m	java:S116„"RRename this field "blobId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹£ñûÿÿÿÿ
+k	java:S116ª"PRename this field "data_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼™ó üÿÿÿÿ
+
+java:S4144"cUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 630.(²ª‰›üÿÿÿÿ
+s
+java:S3077„"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(‹£ñûÿÿÿÿ
+b
+java:S6201Œ"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126ë"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116ó"RRename this field "blobId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê”õÂùÿÿÿÿ
+k	java:S116¿"PRename this field "data_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰ã¡ıøÿÿÿÿ
+?	java:S108ù")Either remove or fill this block of code.(º„ç½
+o
+java:S2975¤"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+d
+java:S6201Å"NReplace this instanceof check and cast with 'instanceof UploadArgs uploadargs'(ê
+b
+java:S6201ú"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201‹"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+z
+java:S4144³"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 1050.(ÀâÇ}
+]
+java:S1126"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+?	java:S108˜")Either remove or fill this block of code.(º„ç½
+o
+java:S2975½"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+h
+java:S6201Ş"RReplace this instanceof check and cast with 'instanceof UploadResult uploadresult'(ÂÈ¹~
+m	java:S116 	"RRename this field "blobId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹£ñûÿÿÿÿ
+€
+java:S4144í"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 1620.(ŠÒ³½ûÿÿÿÿ
+s
+java:S3077 	"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(‹£ñûÿÿÿÿ
+b
+java:S6201¨	"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201º	"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126ó	"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116ó"RRename this field "blobId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê”õÂùÿÿÿÿ
+?	java:S108ÿ
+")Either remove or fill this block of code.(º„ç½
+o
+java:S2975§"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+i
+java:S6201È"RReplace this instanceof check and cast with 'instanceof DownloadArgs downloadargs'(Ö±‰Ö
+b
+java:S6201ú"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201‹"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+g	java:S116Ó"QRename this field "chunk_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÛÔ™Ù
+€
+java:S4144Û"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 2114.(ÁÆ˜úÿÿÿÿ
+]
+java:S1126Œ"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+g	java:S116‹"QRename this field "chunk_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…ÑÓú
+?	java:S108˜")Either remove or fill this block of code.(º„ç½
+o
+java:S2975À"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+m
+java:S6201á"VReplace this instanceof check and cast with 'instanceof DownloadResult downloadresult'(Ö€¾ª
+m	java:S116È"RRename this field "blobId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹£ñûÿÿÿÿ
+€
+java:S4144•"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 2684.(±¼‰İøÿÿÿÿ
+s
+java:S3077È"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(‹£ñûÿÿÿÿ
+b
+java:S6201Ğ"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+b
+java:S6201â"FReplace this instanceof check and cast with 'instanceof String string'(õõáÀÿÿÿÿÿ
+]
+java:S1126›"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+m	java:S116›"RRename this field "blobId_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê”õÂùÿÿÿÿ
+?	java:S108§")Either remove or fill this block of code.(º„ç½
+o
+java:S2975Ï"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+m
+java:S6201ğ"VReplace this instanceof check and cast with 'instanceof DeleteBlobArgs deleteblobargs'(íìè‡
+b
+java:S6201¢"FReplace this instanceof check and cast with 'instanceof String string'(Á¿Ö¨üÿÿÿÿ
+]
+java:S6201³"FReplace this instanceof check and cast with 'instanceof String string'(‡ñ÷
+{
+java:S4144¹"dUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 3104.(‹—òÎ
+]
+java:S1126”"AReplace this if-then-else statement by a single return statement.(®Èäîÿÿÿÿÿ
+?	java:S108")Either remove or fill this block of code.(º„ç½
+o
+java:S2975Ã"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+v
+java:S6201ä"ZReplace this instanceof check and cast with 'instanceof DeleteBlobResult deleteblobresult'(¬¤Ú¥ùÿÿÿÿ
+I
+java:S6126æ"2Replace this String concatenation with Text block.(—²Ùµ
