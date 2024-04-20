@@ -40,7 +40,7 @@ public class JavaUsers implements Users {
             Log.info("User already exists.");
             return Result.error( Result.ErrorCode.CONFLICT);
         }
-        datastore.persist(user);
+        Hibernate.getInstance().persist(user);
         return Result.ok( user.userId() );
     }
 

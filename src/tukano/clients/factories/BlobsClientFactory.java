@@ -4,8 +4,6 @@ import tukano.api.java.Blobs;
 import tukano.clients.grpc.GrpcBlobsClient;
 import tukano.clients.rest.RestBlobsClient;
 
-import Discovery.Discovery;
-
 import java.net.URI;
 
 public class BlobsClientFactory {

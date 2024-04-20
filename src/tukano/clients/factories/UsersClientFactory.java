@@ -1,7 +1,6 @@
 package tukano.clients.factories;
 
 import tukano.api.java.Users;
-import Discovery.Discovery;
 import tukano.clients.grpc.GrpcUsersClient;
 import tukano.clients.rest.RestUsersClient;
 

@@ -1,6 +1,5 @@
 package tukano.clients.factories;
 
-import Discovery.Discovery;
 import tukano.api.java.Shorts;
 import tukano.clients.grpc.GrpcShortsClient;
 import tukano.clients.rest.RestShortsClient;

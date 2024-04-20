@@ -91,7 +91,7 @@ public class JavaShorts implements Shorts {
             return Result.error(resultBlob.error());
         }
         Log.info("está a finalizar");
-        datastore.delete(shortToBeDeleted.value()); /// ter atençao... ELIMINAR ANTES OU DEPOIS?
+        Hibernate.getInstance().delete(shortToBeDeleted.value()); /// ter atençao... ELIMINAR ANTES OU DEPOIS?
         return Result.ok();
     }
 
@@ -171,7 +171,6 @@ public class JavaShorts implements Shorts {
 
     @Override
     public Result<Void> deleteFollowers(String userId) {
-        datastore = Hibernate.getInstance();
         Log.info("delete followers : user = " + userId);
         List<Follow> follows = datastore.sql("SELECT * FROM Follow f WHERE f.followed = '" + userId +
                 "' OR f.follower = '" + userId + "'", Follow.class);
@@ -264,7 +263,6 @@ public class JavaShorts implements Shorts {
 
     public Result<Void> deleteLikes(String userId) {
         Log.info("delete likes : user = " + userId);
-        datastore = Hibernate.getInstance();
 
         List<LikeShort> likes = datastore.sql("SELECT * FROM LikeShort l WHERE l.user = '"
                 + userId + "'", LikeShort.class);
