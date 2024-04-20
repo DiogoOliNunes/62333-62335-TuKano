@@ -86,7 +86,7 @@ public interface Shorts {
 	 * @param userId   - the followed user
 	 * @param password - the password of the followed user
 	 * @return (OK, List < String > | empty list) the list of users that follow another user, or empty if the user has no followers
-	 * NOT_FOUND if the user does not exists
+	 * NOT_FOUND if the user does not exist
 	 * FORBIDDEN if the password is incorrect
 	 */
 	Result<List<String>> followers(String userId, String password);
@@ -125,23 +125,28 @@ public interface Shorts {
 	 * @param userId   user of the requested feed
 	 * @param password the password of the user
 	 * @return (OK, List < String > | empty list)
-	 * NOT_FOUND if the user does not exists
+	 * NOT_FOUND if the user does not exist
 	 * FORBIDDEN if the password is incorrect
 	 */
 	Result<List<String>> getFeed(String userId, String password);
-
-
-
 
 	/**
 	 * Deletes all the likes made by a given user.
 	 *
 	 * @param userId - the identifier of the user
-	 * @return (OK) if the likes were deleted successfully
+	 * @return (OK, VOID) if the likes were deleted successfully.
 	 * NOT_FOUND if the user does not exist
 	 */
 	Result<Void> deleteLikes(String userId);
 
 
+	/**
+	 * Deletes all the followers from a given user.
+	 *
+	 * @param userId - the identifier of the user
+	 * @return (OK, VOID) if the followers were deleted successfully.
+	 * NOT_FOUND if the user does not exist
+	 * FORBIDDEN if the password is incorrect
+	 */
 	Result<Void>  deleteFollowers(String userId);
 }

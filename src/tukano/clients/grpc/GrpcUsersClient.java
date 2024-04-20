@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.StatusRuntimeException;
 import tukano.api.java.Result;
 import tukano.api.User;
 import tukano.api.java.Users;
@@ -23,13 +22,11 @@ import java.util.logging.Logger;
 public class GrpcUsersClient extends GrpcClient implements Users {
     private static Logger Log = Logger.getLogger(GrpcUsersClient.class.getName());
 
-    //private static final long GRPC_REQUEST_TIMEOUT = 5000;
     final UsersGrpc.UsersBlockingStub stub;
 
     public GrpcUsersClient(URI serverURI) {
         var channel = ManagedChannelBuilder.forAddress(serverURI.getHost(), serverURI.getPort()).usePlaintext().build();
         stub = UsersGrpc.newBlockingStub(channel);
-        //stub = UsersGrpc.newBlockingStub( channel ).withDeadlineAfter(GRPC_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 
     @Override

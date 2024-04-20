@@ -33,7 +33,6 @@ public class RestBlobsServer {
 
             Log.info(String.format("%s Server ready @ %s\n", SERVICE, serverURI));
 
-            // More code can be executed here...
         } catch (Exception e) {
             Log.severe(e.getMessage());
         }

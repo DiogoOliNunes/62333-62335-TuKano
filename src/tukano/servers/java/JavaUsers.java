@@ -23,14 +23,13 @@ public class JavaUsers implements Users {
     public Result<String> createUser(User user) {
         Log.info("createUser : " + user);
 
-        // Check if user data is valid
         if(user.userId() == null || user.pwd() == null || user.displayName() == null || user.email() == null) {
             Log.info("User object invalid.");
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
         List<User> result = Hibernate.getInstance().sql("SELECT * FROM User u WHERE u.userId LIKE '" + user.userId() + "'",
                 User.class);
-        // Insert user, checking if name already exists
+
         if( !result.isEmpty() ) {
             Log.info("User already exists.");
             return Result.error( Result.ErrorCode.CONFLICT);
@@ -43,7 +42,6 @@ public class JavaUsers implements Users {
     public Result<User> getUser(String userId, String pwd) {
         Log.info("getUser : user = " + userId + "; pwd = " + pwd);
 
-        // Check if user is valid
         if(userId == null || pwd == null) {
             Log.info("Name or Password null.");
             return Result.error( Result.ErrorCode.BAD_REQUEST);
@@ -51,7 +49,7 @@ public class JavaUsers implements Users {
 
         List<User> result = Hibernate.getInstance().sql("SELECT * FROM User u WHERE u.userId LIKE '" + userId + "'",
                 User.class);
-        // Check if user exists
+
         if(result.isEmpty()) {
             Log.info("User does not exist.");
             return Result.error( Result.ErrorCode.NOT_FOUND);

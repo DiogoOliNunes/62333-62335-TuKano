@@ -17,7 +17,6 @@ import tukano.impl.grpc.generated_java.UsersProtoBuf.SearchUserArgs;
 import tukano.impl.grpc.generated_java.UsersProtoBuf.UpdateUserArgs;
 import tukano.impl.grpc.generated_java.UsersProtoBuf.UpdateUserResult;
 import tukano.servers.java.JavaUsers;
-import utils.DataModelAdaptor;
 
 import java.util.List;
 

@@ -9,7 +9,6 @@ import tukano.api.java.Shorts;
 import tukano.api.rest.RestShorts;
 import tukano.api.rest.RestUsers;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.List;
 import java.util.logging.Logger;

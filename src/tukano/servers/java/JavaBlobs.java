@@ -76,7 +76,7 @@ public class JavaBlobs implements Blobs {
 
         try {
             Path dir = Paths.get(BLOB_COLLECTION);
-            if (!Files.isDirectory(dir)) return Result.ok(); //Checks if exists a blob server
+            if (!Files.isDirectory(dir)) return Result.ok();
             Path blobPath = Path.of(BLOB_COLLECTION, blobId);
 
             if (!Files.exists(blobPath))

@@ -14,8 +14,6 @@ import tukano.impl.grpc.generated_java.BlobsProtoBuf.DeleteBlobArgs;
 import tukano.impl.grpc.generated_java.BlobsProtoBuf.DeleteBlobResult;
 import tukano.servers.java.JavaBlobs;
 
-import static utils.DataModelAdaptor.GrpcUser_to_User;
-
 public class GrpcBlobsServerStub extends GrpcServerStub implements BlobsGrpc.AsyncService, BindableService {
 
     Blobs impl = new JavaBlobs();

@@ -6,25 +6,19 @@ import tukano.api.java.Result;
 import tukano.api.java.Shorts;
 import tukano.impl.grpc.generated_java.ShortsGrpc;
 import tukano.impl.grpc.generated_java.ShortsProtoBuf;
-import tukano.impl.grpc.generated_java.UsersGrpc;
-import tukano.impl.grpc.generated_java.UsersProtoBuf;
 
 import java.net.URI;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static utils.DataModelAdaptor.GrpcShort_to_Short;
-import static utils.DataModelAdaptor.User_to_GrpcUser;
 
 public class GrpcShortsClient extends GrpcClient implements Shorts {
 
-    //private static final long GRPC_REQUEST_TIMEOUT = 5000;
     final ShortsGrpc.ShortsBlockingStub stub;
 
     public GrpcShortsClient(URI serverURI) {
         var channel = ManagedChannelBuilder.forAddress(serverURI.getHost(), serverURI.getPort()).usePlaintext().build();
         stub = ShortsGrpc.newBlockingStub(channel);
-        //stub = ShortsGrpc.newBlockingStub( channel ).withDeadlineAfter(GRPC_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 
     @Override
