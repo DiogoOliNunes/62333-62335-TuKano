@@ -44,7 +44,6 @@ public class RestBlobsClient  extends RestClient implements Blobs {
         config.property(ClientProperties.CONNECT_TIMEOUT, CONNECT_TIMEOUT);
 
         this.client = ClientBuilder.newClient(config);
-
         target = client.target(serverURI).path(RestBlobs.PATH);
     }
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
 import tukano.api.java.Result;
 import tukano.api.User;
 import tukano.api.java.Users;
@@ -89,6 +90,7 @@ public class GrpcUsersClient extends GrpcClient implements Users {
             res.forEachRemaining(grpcUser -> users.add(GrpcUser_to_User(grpcUser)));
             return users;
         });
+
     }
 
 }
