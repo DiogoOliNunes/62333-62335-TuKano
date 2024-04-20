@@ -1,7 +1,9 @@
 
-d
-java:S1192+"IDefine a constant instead of duplicating this literal "; pwd = " 3 times.(é¼ıÿÿÿÿÿ
-i
-java:S3008"NRename this field "Log" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿…·’üÿÿÿÿ
-H
-java:S1135k"2Complete the task associated to this TODO comment.(¡æÔ«
+k
+java:S1192-"IDefine a constant instead of duplicating this literal "; pwd = " 3 times.(é¼ıÿÿÿÿÿ8¬¨¸Óï1
+p
+java:S3008"NRename this field "Log" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿…·’üÿÿÿÿ8»¨¸Óï1
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(åŞÔñûÿÿÿÿ8»¨¸Óï1
+^
+java:S1128"ARemove this unused import 'tukano.clients.rest.RestShortsClient'.(«µÏ8¨µúÖï1

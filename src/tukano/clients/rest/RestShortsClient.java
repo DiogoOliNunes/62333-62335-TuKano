@@ -28,8 +28,8 @@ public class RestShortsClient extends RestClient implements Shorts {
 
     private static Logger Log = Logger.getLogger(RestShortsClient.class.getName());
 
-    protected static final int READ_TIMEOUT =30000;
-    protected static final int CONNECT_TIMEOUT = 30000;
+    protected static final int READ_TIMEOUT = 10000;
+    protected static final int CONNECT_TIMEOUT = 10000;
 
     protected static final int MAX_RETRIES = 3;
     protected static final int RETRY_SLEEP = 1000;

@@ -65,23 +65,17 @@ public class JavaShorts implements Shorts {
 
 
         Result<Short> shortToBeDeleted = getShort(shortId);
-        Log.info("campeao jumento galinacceio -> " + shortToBeDeleted.isOK() );
         if (!shortToBeDeleted.isOK()) return Result.error(shortToBeDeleted.error());
 
-        Log.info("passou apesarzinho de ser -> " + shortToBeDeleted.isOK() );
         Result<User> result = UsersClientFactory.getClient(userURI[0]).getUser(shortToBeDeleted.value().getOwnerId(), password);
         if (!result.isOK()) {
-            Log.info("pois meu bem, é lidazinh");
             return Result.error(result.error());
         }
         Log.info("vou desfalecer ajuda");
         List<LikeShort> shortLikes = Hibernate.getInstance().sql("SELECT * FROM LikeShort l WHERE l.shortLiked LIKE '"
                 + shortId + "'", LikeShort.class);
-        Log.info("ainda estou vivo ufa");
         shortLikes.forEach(like -> Hibernate.getInstance().delete(like));
-        Log.info("o erro nao era disto seu kelk");
         blobURI = Discovery.getInstance().knownUrisOf("blobs",1);
-        Log.info("palalolico: " + getRightServer(blobURI, shortToBeDeleted.value()));
 
         Result<Void> resultBlob = BlobsClientFactory.getClient(getRightServer(blobURI, shortToBeDeleted.value())).deleteBlob(shortId);
 
@@ -296,10 +290,6 @@ public class JavaShorts implements Shorts {
 
     public URI getServer(URI[] URIs) {
         Log.info("Getting the best server...");
-        if (URIs.length == 0) {
-            Log.info("Realmente és tao esperto ");
-            return null;
-        }
         return Arrays.stream(URIs).min(Comparator.comparing(this::getBlobSize)).orElse(null);
     }
 
@@ -315,14 +305,7 @@ public class JavaShorts implements Shorts {
 
         URI rightURI = null;
 
-        if (URIs == null) {
-            Log.info("KELK KELK KELK KELK KELK KELK KELK");
-        }
-
-        Log.info("Realmente és tao esperto tamanho: " + URIs.length);
-
         if (URIs.length == 0) {
-            Log.info("coise coise");
             return null;
         }
 
