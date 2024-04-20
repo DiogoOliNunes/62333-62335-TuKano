@@ -8,7 +8,7 @@ import java.net.InetAddress;
 import java.util.logging.Logger;
 
 public class GrpcShortsServer {
-    public static final int PORT = 9000;
+    public static final int PORT = 8084;
 
     private static final String GRPC_CTX = "/gprc";
     private static final String SERVER_BASE_URI = "grpc://%s:%s%s";
