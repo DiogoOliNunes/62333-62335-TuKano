@@ -18,13 +18,10 @@ public class JavaBlobs implements Blobs {
     private static Logger Log = Logger.getLogger(JavaBlobs.class.getName());
 
     private static final String BLOB_COLLECTION = "./blobs/";// blob collection, blob media center?
-    Hibernate datastore;
-    URI[] uri;
-    public JavaBlobs() {
 
-        datastore = Hibernate.getInstance();
-        uri = Discovery.getInstance().knownUrisOf("shorts",1);
-    }
+    URI[] uri = Discovery.getInstance().knownUrisOf("shorts",1);
+
+    public JavaBlobs() { }
 
     @Override
     public Result<Void> upload(String blobId, byte[] bytes) {

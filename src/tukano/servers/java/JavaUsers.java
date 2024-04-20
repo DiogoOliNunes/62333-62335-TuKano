@@ -16,13 +16,9 @@ public class JavaUsers implements Users {
 
     private static Logger Log = Logger.getLogger(JavaUsers.class.getName());
 
-    Hibernate datastore;
-    URI[] shortURI;
+    URI[] shortURI = Discovery.getInstance().knownUrisOf("shorts",1);
 
-    public JavaUsers() {
-        datastore = Hibernate.getInstance();
-        shortURI = Discovery.getInstance().knownUrisOf("shorts",1);
-    }
+    public JavaUsers() { }
 
     @Override
     public Result<String> createUser(User user) {
@@ -33,7 +29,7 @@ public class JavaUsers implements Users {
             Log.info("User object invalid.");
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
-        List<User> result = datastore.sql("SELECT * FROM User u WHERE u.userId LIKE '" + user.userId() + "'",
+        List<User> result = Hibernate.getInstance().sql("SELECT * FROM User u WHERE u.userId LIKE '" + user.userId() + "'",
                 User.class);
         // Insert user, checking if name already exists
         if( !result.isEmpty() ) {
@@ -54,7 +50,7 @@ public class JavaUsers implements Users {
             return Result.error( Result.ErrorCode.BAD_REQUEST);
         }
 
-        List<User> result = datastore.sql("SELECT * FROM User u WHERE u.userId LIKE '" + userId + "'",
+        List<User> result = Hibernate.getInstance().sql("SELECT * FROM User u WHERE u.userId LIKE '" + userId + "'",
                 User.class);
         // Check if user exists
         if(result.isEmpty()) {
@@ -75,6 +71,7 @@ public class JavaUsers implements Users {
     public Result<User> updateUser(String userId, String pwd, User user) {
         Log.info("updateUser : user = " + userId + "; pwd = " + pwd + "\n" + "newUser = " + user);
 
+
         if (!userId.equals(user.userId()) && user.userId() != null)
             return Result.error(Result.ErrorCode.BAD_REQUEST);
 
@@ -93,7 +90,7 @@ public class JavaUsers implements Users {
         if (updatedUser.displayName() != null)
             oldUser.setDisplayName(updatedUser.displayName());
 
-        datastore.update(oldUser);
+        Hibernate.getInstance().update(oldUser);
         return oldUser;
     }
 
@@ -112,7 +109,7 @@ public class JavaUsers implements Users {
         ShortsClientFactory.getClient(shortURI[0]).deleteLikes(userId);
 
         User userToBeRemoved = result.value();
-        datastore.delete(userToBeRemoved);
+        Hibernate.getInstance().delete(userToBeRemoved);
 
         return Result.ok(userToBeRemoved);
     }
@@ -120,7 +117,7 @@ public class JavaUsers implements Users {
     @Override
     public Result<List<User>> searchUsers(String pattern) { //TODO: tratar de quando e badrequest
         Log.info("searchUsers : pattern = " + pattern);
-        List<User> users = datastore.sql("SELECT * FROM User", User.class);
+        List<User> users = Hibernate.getInstance().sql("SELECT * FROM User", User.class);
 
         if (pattern != null) users.removeIf(user -> !user.userId().toLowerCase().contains(pattern.toLowerCase()));
 
